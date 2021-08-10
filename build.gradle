@@ -1,0 +1,108 @@
+plugins {
+    id 'java'
+    id 'idea'
+    id 'maven-publish'
+    id 'signing'
+}
+
+group 'com.kazurayam'
+version '0.1.0-SNAPSHOT'
+
+ext.isReleaseVersion = ! version.endsWith("SNAPSHOT")
+
+repositories {
+    mavenCentral()
+}
+
+
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
+
+def defaultEncoding = 'UTF-8'
+tasks.withType(AbstractCompile).each { it.options.encoding = defaultEncoding }
+tasks.withType(GroovyCompile).each {it.groovyOptions.encoding = defaultEncoding }
+
+ext {
+    seleniumjavaVersion = '3.141.59'
+    webdrivermanager = '4.4.3'
+    ashotVersion = '1.5.4'
+    junitjupiterVersion = '5.7.0'
+}
+
+dependencies {
+
+    // https://mvnrepository.com/artifact/ru.yandex.qatools.ashot/ashot
+    implementation group: 'ru.yandex.qatools.ashot', name: 'ashot', version: "${ashotVersion}"
+
+    implementation "org.seleniumhq.selenium:selenium-java:${seleniumjavaVersion}"
+
+    // https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager
+    testImplementation group: 'io.github.bonigarcia', name: 'webdrivermanager', version: "${webdrivermanager}"
+
+    testImplementation "org.junit.jupiter:junit-jupiter-api:${junitjupiterVersion}"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitjupiterVersion}"
+}
+
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
+test {
+    useJUnitPlatform()
+}
+
+artifacts {
+    archives javadocJar, sourcesJar
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            pom {
+                groupId = project.group
+                name = project.rootProject.name
+                description = 'A wrapper for AShot --- a screenshot utility for WebDriver'
+                from components.java
+                licenses {
+                    license {
+                        name = 'The Apache License, Version 2.0'
+                        url = 'https://www.apache.org.licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'kazurayam'
+                        name = 'URAYAMA,kazuaki'
+                        email = 'kazuaki.urayama@gmail.com'
+                    }
+                }
+                scm {
+                    connection = "scm:git:https://github.com/kazurayam/${project.rootProject.name}.git"
+                    developerConnection = "scm:git:git@github.com:kazurayam/${project.rootProject.name}.git"
+                    url = "https://github.com/kazurayam/${project.rootProject.name}"
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+            def releaseRepo = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+            def snapshotRepo = "https://s01.oss.sonatype.org/content/repositories/snapshots/"
+            url = isReleaseVersion ? releaseRepo: snapshotRepo
+            credentials {
+                username = project.hasProperty('ossrhUsername') ? ossrhUsername : "Unknown user"
+                password = project.hasProperty('ossrhPassword') ? ossrhPassword : "Unknown password"
+            }
+        }
+    }
+}
+
+
+signing {
+    sign publishing.publications.mavenJava
+}
+// I do not want to sign the SNAPSHOT
+tasks.withType(Sign) {
+    onlyIf { isReleaseVersion }
+}

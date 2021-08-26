@@ -63,6 +63,7 @@ publishing {
                 groupId = project.group
                 name = project.rootProject.name
                 description = 'A wrapper for AShot --- a screenshot utility for WebDriver'
+                url = 'https://kazurayam.github.io/ashotwrapper/'
                 from components.java
                 licenses {
                     license {
@@ -106,3 +107,9 @@ signing {
 tasks.withType(Sign) {
     onlyIf { isReleaseVersion }
 }
+
+task copyJavadocToDocsDir(type: Copy) {
+    from 'build/docs/javadoc'
+    into 'docs/api'
+}
+javadoc.finalizedBy copyJavadocToDocsDir

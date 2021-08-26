@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"com.kazurayam.ashotwrapper","h":"","u":""},{"l":"すべてのパッケージ","h":"","u":"allpackages-index.html"}]

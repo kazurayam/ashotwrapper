@@ -7,7 +7,7 @@ public class DevicePixelRatioResolver {
 
     private DevicePixelRatioResolver() {}
 
-    static float resolveDPR(WebDriver driver) {
+    public static float resolveDPR(WebDriver driver) {
         JavascriptExecutor js = (JavascriptExecutor)driver;
         Long value = (Long)js.executeScript("return window.devicePixelRatio;");
         return (float)value;

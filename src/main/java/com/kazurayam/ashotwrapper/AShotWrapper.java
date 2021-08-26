@@ -30,7 +30,7 @@ public class AShotWrapper {
      * @param by
      * @param file
      */
-    static void saveElementImage(WebDriver webDriver, By by, Options options, File file)
+    public static void saveElementImage(WebDriver webDriver, By by, Options options, File file)
             throws FileNotFoundException {
         BufferedImage image = takeElementImage(webDriver, by, options);
         try (FileOutputStream fos = new FileOutputStream(file)){
@@ -40,12 +40,12 @@ public class AShotWrapper {
         }
     }
 
-    static void saveElementImage(WebDriver webDriver, By by, File file)
+    public static void saveElementImage(WebDriver webDriver, By by, File file)
             throws FileNotFoundException {
         saveElementImage(webDriver, by, new Options.Builder().build(), file);
     }
 
-    static void saveEntirePageImage(WebDriver webDriver, Options options, File file) {
+    public static void saveEntirePageImage(WebDriver webDriver, Options options, File file) {
         BufferedImage image = takeEntirePageImage(webDriver, options);
         try (FileOutputStream fos = new FileOutputStream(file)) {
             ImageIO.write(image, "PNG", fos);
@@ -54,7 +54,7 @@ public class AShotWrapper {
         }
     }
 
-    static void saveEntirePageImage(WebDriver webDriver, File file) {
+    public static void saveEntirePageImage(WebDriver webDriver, File file) {
         saveEntirePageImage(webDriver, new Options.Builder().build(), file);
     }
 
@@ -69,7 +69,7 @@ public class AShotWrapper {
      * @param by
      * @return BufferedImage
      */
-    static BufferedImage takeElementImage(WebDriver webDriver, By by, Options options) {
+    public static BufferedImage takeElementImage(WebDriver webDriver, By by, Options options) {
         int timeout = options.getTimeout();
         WebElement webElement = webDriver.findElement(by);
         float dpr = options.getDevicePixelRatio();
@@ -81,7 +81,7 @@ public class AShotWrapper {
         return screenshot.getImage();
     }
 
-    static BufferedImage takeElementImage(WebDriver webDriver, By by) {
+    public static BufferedImage takeElementImage(WebDriver webDriver, By by) {
         return takeElementImage(webDriver, by, AShotWrapper.Options.DEFAULT_OPTIONS);
     }
 
@@ -93,7 +93,7 @@ public class AShotWrapper {
      * @param webDriver
      * @return BufferedImage
      */
-    static BufferedImage takeEntirePageImage(WebDriver webDriver, Options options) {
+    public static BufferedImage takeEntirePageImage(WebDriver webDriver, Options options) {
         int timeout = options.getTimeout();
         float dpr = options.getDevicePixelRatio();
         List<By> byList = options.getIgnoredElements();
@@ -121,15 +121,15 @@ public class AShotWrapper {
         return result;
     }
 
-    static BufferedImage takeEntirePageImage(WebDriver webDriver) {
+    public static BufferedImage takeEntirePageImage(WebDriver webDriver) {
         return takeEntirePageImage(webDriver, Options.DEFAULT_OPTIONS);
     }
 
-        /**
-         * censor means 検閲 in Japanese.
-         *
-         */
-    static BufferedImage censor(Screenshot screenshot) {
+    /**
+     * censor means 検閲 in Japanese.
+     *
+     */
+    protected static BufferedImage censor(Screenshot screenshot) {
         Color PAINT_IT_COLOR = Color.LIGHT_GRAY;
         BufferedImage bi = screenshot.getImage();
         Graphics2D g2D = bi.createGraphics();
@@ -153,7 +153,7 @@ public class AShotWrapper {
      * @param targetWidth resize the sourceImage to this width, retaining the aspect ratio unchanged
      * @return resized image
      */
-    static BufferedImage resize(BufferedImage sourceImage, int targetWidth) {
+    protected static BufferedImage resize(BufferedImage sourceImage, int targetWidth) {
         if (targetWidth < 0) return sourceImage;
         int sourceWidth  = sourceImage.getWidth();
         int sourceHeight = sourceImage.getHeight();

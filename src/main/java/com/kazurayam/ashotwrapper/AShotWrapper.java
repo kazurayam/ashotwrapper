@@ -186,14 +186,14 @@ public class AShotWrapper {
         private final int width;
         private final float devicePixelRatio;
 
-        static class Builder {
+        public static class Builder {
 
             private int timeout;
             private final List<By> ignoredElements;
             private int width;
             private float devicePixelRatio;
 
-            Builder() {
+            public Builder() {
                 timeout = SCROLLING_TIMEOUT_DEFAULT;
                 ignoredElements = new ArrayList<By>();   // no elements to ignore
                 width = -1;  // not specified
@@ -204,7 +204,7 @@ public class AShotWrapper {
              * @param value in millisecond. Optional. Defaults to 500 milli seconds
              * @return
              */
-            Builder timeout(int value) {
+            public Builder timeout(int value) {
                 if (value < 0) {
                     throw new IllegalArgumentException("value(${value}) must not be negative");
                 }
@@ -215,12 +215,12 @@ public class AShotWrapper {
                 this.timeout = value;
                 return this;
             }
-            Builder addIgnoredElement(By by) {
+            public Builder addIgnoredElement(By by) {
                 Objects.requireNonNull(by, "argument by must not be null");
                 this.ignoredElements.add(by);
                 return this;
             }
-            Builder width(int value) {
+            public Builder width(int value) {
                 if (value <= 0) {
                     throw new IllegalArgumentException("value(${value}) must not be negative or equal to 0");
                 }
@@ -230,11 +230,11 @@ public class AShotWrapper {
                 this.width = value;
                 return this;
             }
-            Builder devicePixelRatio(float value) {
+            public Builder devicePixelRatio(float value) {
                 this.devicePixelRatio = value;
                 return this;
             }
-            Options build() {
+            public Options build() {
                 return new Options(this);
             }
         }
@@ -246,19 +246,19 @@ public class AShotWrapper {
             this.devicePixelRatio = builder.devicePixelRatio;
         }
 
-        int getTimeout() {
+        public int getTimeout() {
             return this.timeout;
         }
 
-        List<By> getIgnoredElements() {
+        public List<By> getIgnoredElements() {
             return this.ignoredElements;
         }
 
-        int getWidth() {
+        public int getWidth() {
             return this.width;
         }
 
-        float getDevicePixelRatio() {
+        public float getDevicePixelRatio() {
             return this.devicePixelRatio;
         }
 

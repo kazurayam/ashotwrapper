@@ -1,0 +1,41 @@
+## Getting started with AShot with AshotWrapper
+
+A thin wrapper for the https://github.com/pazone/ashot[AShot] library in java,
+which makes it easy to use the AShot in the https://forum.katalon.com/t/visual-inspection-in-katalon-studio-reborn/57440[Visual Inspection in Katalon Studio] project.
+
+The artifact is available at the Maven Central repository:
+
+- https://mvnrepository.com/artifact/com.kazurayam/ashotwrapper
+
+### API
+
+Javadoc is link:./api/index.html[here]
+
+### Example
+
+[quote]
+----
+include::../src/test/java/com/kazurayam/ashotwrapper/demo/AShotWrapperDemo.java[]
+----
+
+
+This will emit the following output:
+
+```
+$ tree build/tmp/testOutput
+build/tmp/testOutput
+└── com.kazurayam.ashotwrapper.AShotWrapperTest
+    ├── test_saveElementImage.png
+    ├── test_saveEntirePageImage.png
+    ├── test_takeEntirePageImage.png
+    └── test_takeWebElementImage.png
+
+1 directory, 4 files
+
+```
+
+## Motivation, etc.
+
+The AShot library provides a rich set of screenshot functionalities. I appreciate that.
+I only need just a part of them in the "Visual Inspection in Katalon Studio" project.
+So I made a wrapper to hide the details.

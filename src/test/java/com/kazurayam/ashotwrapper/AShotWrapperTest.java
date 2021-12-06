@@ -82,7 +82,7 @@ public class AShotWrapperTest {
     }
 
     @Test
-    void test_saveElementImage() throws FileNotFoundException {
+    void test_saveElementImage() throws IOException {
         File screenshotFile = outputDir.resolve("test_saveElementImage.png").toFile();
         AShotWrapper.saveElementImage(driver,
                 By.xpath("//body/div"), screenshotFile);
@@ -90,7 +90,7 @@ public class AShotWrapperTest {
     }
 
     @Test
-    void test_saveEntirePageImage() {
+    void test_saveEntirePageImage() throws IOException {
         File screenshotFile = outputDir.resolve("test_saveEntirePageImage.png").toFile();
         AShotWrapper.saveEntirePageImage(driver, screenshotFile);
         assertTrue(screenshotFile.exists());

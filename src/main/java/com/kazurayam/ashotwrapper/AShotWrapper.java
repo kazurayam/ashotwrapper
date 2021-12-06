@@ -15,6 +15,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.List;
@@ -26,35 +27,40 @@ public class AShotWrapper {
      * takes screenshot of the specified WebElement in the target WebPage,
      * and save it into the output file in PNG format.
      *
-     * @param webDriver
-     * @param by
-     * @param file
+     * @param webDriver WebDriver instance
+     * @param by By instance
+     * @param options AShot.Options instance; should specify DevicePixelRatio
+     * @param file file as output
+     * @throws IOException when the parent directory is not there, etc
      */
     public static void saveElementImage(WebDriver webDriver, By by, Options options, File file)
-            throws FileNotFoundException {
+            throws IOException {
         BufferedImage image = takeElementImage(webDriver, by, options);
         try (FileOutputStream fos = new FileOutputStream(file)){
             ImageIO.write(image, "PNG", fos);
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
+            throw e;
         }
     }
 
     public static void saveElementImage(WebDriver webDriver, By by, File file)
-            throws FileNotFoundException {
+            throws IOException {
         saveElementImage(webDriver, by, new Options.Builder().build(), file);
     }
 
-    public static void saveEntirePageImage(WebDriver webDriver, Options options, File file) {
+    public static void saveEntirePageImage(WebDriver webDriver, Options options, File file)
+            throws IOException {
         BufferedImage image = takeEntirePageImage(webDriver, options);
         try (FileOutputStream fos = new FileOutputStream(file)) {
             ImageIO.write(image, "PNG", fos);
         } catch (Exception e) {
             e.printStackTrace();
+            throw e;
         }
     }
 
-    public static void saveEntirePageImage(WebDriver webDriver, File file) {
+    public static void saveEntirePageImage(WebDriver webDriver, File file) throws IOException {
         saveEntirePageImage(webDriver, new Options.Builder().build(), file);
     }
 
@@ -65,8 +71,9 @@ public class AShotWrapper {
      * If the specified webElement is not found, then screenshot of whole page
      * will be returned.
      *
-     * @param webDriver
-     * @param by
+     * @param webDriver WebDriver instance
+     * @param by By instance
+     * @param options AShotWrapper.Options instance. Should specify DevicePixelRatio
      * @return BufferedImage
      */
     public static BufferedImage takeElementImage(WebDriver webDriver, By by, Options options) {
@@ -90,7 +97,8 @@ public class AShotWrapper {
      * while ignoring some elements specified
      * returns it as a BufferedImage object
      *
-     * @param webDriver
+     * @param webDriver WebDriver instance
+     * @param options AShotWrapper.Options instance; should specify DevicePixelRatio
      * @return BufferedImage
      */
     public static BufferedImage takeEntirePageImage(WebDriver webDriver, Options options) {
@@ -127,7 +135,8 @@ public class AShotWrapper {
 
     /**
      * censor means 検閲 in Japanese.
-     *
+     * @param screenshot AShot's Screenshot instance
+     * @return a BufferedImage in which some portions are painted out
      */
     protected static BufferedImage censor(Screenshot screenshot) {
         Color PAINT_IT_COLOR = Color.LIGHT_GRAY;
@@ -202,7 +211,7 @@ public class AShotWrapper {
             /**
              * set scrolling timeout
              * @param value in millisecond. Optional. Defaults to 500 milli seconds
-             * @return
+             * @return Builder instace
              */
             public Builder timeout(int value) {
                 if (value < 0) {

@@ -278,16 +278,17 @@ extends java.lang.Object</pre>
                                     org.openqa.selenium.By&nbsp;by,
                                     <a href="../../../com/kazurayam/ashotwrapper/AShotWrapper.Options.html" title="com.kazurayam.ashotwrapper内のクラス">AShotWrapper.Options</a>&nbsp;options,
                                     java.io.File&nbsp;file)
-                             throws java.io.FileNotFoundException</pre>
+                             throws java.io.IOException</pre>
 <div class="block">takes screenshot of the specified WebElement in the target WebPage,
  and save it into the output file in PNG format.</div>
 <dl>
 <dt><span class="paramLabel">パラメータ:</span></dt>
-<dd><code>webDriver</code> - </dd>
-<dd><code>by</code> - </dd>
-<dd><code>file</code> - </dd>
+<dd><code>webDriver</code> - WebDriver instance</dd>
+<dd><code>by</code> - By instance</dd>
+<dd><code>options</code> - AShot.Options instance; should specify DevicePixelRatio</dd>
+<dd><code>file</code> - file as output</dd>
 <dt><span class="throwsLabel">例外:</span></dt>
-<dd><code>java.io.FileNotFoundException</code></dd>
+<dd><code>java.io.IOException</code> - the parent directory is not there</dd>
 </dl>
 </li>
 </ul>
@@ -300,10 +301,10 @@ extends java.lang.Object</pre>
 <pre>public static&nbsp;void&nbsp;saveElementImage(org.openqa.selenium.WebDriver&nbsp;webDriver,
                                     org.openqa.selenium.By&nbsp;by,
                                     java.io.File&nbsp;file)
-                             throws java.io.FileNotFoundException</pre>
+                             throws java.io.IOException</pre>
 <dl>
 <dt><span class="throwsLabel">例外:</span></dt>
-<dd><code>java.io.FileNotFoundException</code></dd>
+<dd><code>java.io.IOException</code></dd>
 </dl>
 </li>
 </ul>
@@ -315,7 +316,12 @@ extends java.lang.Object</pre>
 <h4>saveEntirePageImage</h4>
 <pre>public static&nbsp;void&nbsp;saveEntirePageImage(org.openqa.selenium.WebDriver&nbsp;webDriver,
                                        <a href="../../../com/kazurayam/ashotwrapper/AShotWrapper.Options.html" title="com.kazurayam.ashotwrapper内のクラス">AShotWrapper.Options</a>&nbsp;options,
-                                       java.io.File&nbsp;file)</pre>
+                                       java.io.File&nbsp;file)
+                                throws java.io.IOException</pre>
+<dl>
+<dt><span class="throwsLabel">例外:</span></dt>
+<dd><code>java.io.IOException</code></dd>
+</dl>
 </li>
 </ul>
 <a name="saveEntirePageImage-org.openqa.selenium.WebDriver-java.io.File-">
@@ -325,7 +331,12 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>saveEntirePageImage</h4>
 <pre>public static&nbsp;void&nbsp;saveEntirePageImage(org.openqa.selenium.WebDriver&nbsp;webDriver,
-                                       java.io.File&nbsp;file)</pre>
+                                       java.io.File&nbsp;file)
+                                throws java.io.IOException</pre>
+<dl>
+<dt><span class="throwsLabel">例外:</span></dt>
+<dd><code>java.io.IOException</code></dd>
+</dl>
 </li>
 </ul>
 <a name="takeElementImage-org.openqa.selenium.WebDriver-org.openqa.selenium.By-com.kazurayam.ashotwrapper.AShotWrapper.Options-">
@@ -344,8 +355,9 @@ extends java.lang.Object</pre>
  will be returned.</div>
 <dl>
 <dt><span class="paramLabel">パラメータ:</span></dt>
-<dd><code>webDriver</code> - </dd>
-<dd><code>by</code> - </dd>
+<dd><code>webDriver</code> - WebDriver instance</dd>
+<dd><code>by</code> - By instance</dd>
+<dd><code>options</code> - AShotWrapper.Options instance. Should specify DevicePixelRatio</dd>
 <dt><span class="returnLabel">戻り値:</span></dt>
 <dd>BufferedImage</dd>
 </dl>
@@ -374,7 +386,8 @@ extends java.lang.Object</pre>
  returns it as a BufferedImage object</div>
 <dl>
 <dt><span class="paramLabel">パラメータ:</span></dt>
-<dd><code>webDriver</code> - </dd>
+<dd><code>webDriver</code> - WebDriver instance</dd>
+<dd><code>options</code> - AShotWrapper.Options instance; should specify DevicePixelRatio</dd>
 <dt><span class="returnLabel">戻り値:</span></dt>
 <dd>BufferedImage</dd>
 </dl>
@@ -397,6 +410,12 @@ extends java.lang.Object</pre>
 <h4>censor</h4>
 <pre>protected static&nbsp;java.awt.image.BufferedImage&nbsp;censor(ru.yandex.qatools.ashot.Screenshot&nbsp;screenshot)</pre>
 <div class="block">censor means 検閲 in Japanese.</div>
+<dl>
+<dt><span class="paramLabel">パラメータ:</span></dt>
+<dd><code>screenshot</code> - AShot's Screenshot instance</dd>
+<dt><span class="returnLabel">戻り値:</span></dt>
+<dd>a BufferedImage in which some portions are painted out</dd>
+</dl>
 </li>
 </ul>
 <a name="resize-java.awt.image.BufferedImage-int-">

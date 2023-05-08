@@ -9,11 +9,15 @@ import ru.yandex.qatools.ashot.coordinates.Coords;
 import ru.yandex.qatools.ashot.coordinates.WebDriverCoordsProvider;
 import ru.yandex.qatools.ashot.shooting.ShootingStrategies;
 
+import javax.imageio.IIOImage;
 import javax.imageio.ImageIO;
+import javax.imageio.ImageWriteParam;
+import javax.imageio.ImageWriter;
+import javax.imageio.stream.FileImageOutputStream;
+import javax.imageio.stream.ImageOutputStream;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -22,116 +26,6 @@ import java.util.List;
 import java.util.Set;
 
 public class AShotWrapper {
-
-    /**
-     * takes screenshot of the specified WebElement in the target WebPage,
-     * and save it into the output file in PNG format.
-     *
-     * @param webDriver WebDriver instance
-     * @param by By instance
-     * @param options AShot.Options instance; should specify DevicePixelRatio
-     * @param file file as output
-     * @throws IOException when the parent directory is not there, etc
-     */
-    public static void saveElementImage(WebDriver webDriver, By by, Options options, File file)
-            throws IOException {
-        BufferedImage image = takeElementImage(webDriver, by, options);
-        try (FileOutputStream fos = new FileOutputStream(file)){
-            ImageIO.write(image, "PNG", fos);
-        } catch (IOException e) {
-            e.printStackTrace();
-            throw e;
-        }
-    }
-
-    public static void saveElementImage(WebDriver webDriver, By by, File file)
-            throws IOException {
-        saveElementImage(webDriver, by, new Options.Builder().build(), file);
-    }
-
-    public static void saveEntirePageImage(WebDriver webDriver, Options options, File file)
-            throws IOException {
-        BufferedImage image = takeEntirePageImage(webDriver, options);
-        try (FileOutputStream fos = new FileOutputStream(file)) {
-            ImageIO.write(image, "PNG", fos);
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw e;
-        }
-    }
-
-    public static void saveEntirePageImage(WebDriver webDriver, File file) throws IOException {
-        saveEntirePageImage(webDriver, new Options.Builder().build(), file);
-    }
-
-    /**
-     * takes screenshot of the specified WebElement in the target WebPage,
-     * returns it as a BufferedImage object.
-     *
-     * If the specified webElement is not found, then screenshot of whole page
-     * will be returned.
-     *
-     * @param webDriver WebDriver instance
-     * @param by By instance
-     * @param options AShotWrapper.Options instance. Should specify DevicePixelRatio
-     * @return BufferedImage
-     */
-    public static BufferedImage takeElementImage(WebDriver webDriver, By by, Options options) {
-        int timeout = options.getTimeout();
-        WebElement webElement = webDriver.findElement(by);
-        float dpr = options.getDevicePixelRatio();
-        Screenshot screenshot = new AShot().
-                coordsProvider(new WebDriverCoordsProvider()).
-                shootingStrategy(
-                        ShootingStrategies.viewportPasting(ShootingStrategies.scaling(dpr), timeout)).
-                takeScreenshot(webDriver, webElement);
-        return screenshot.getImage();
-    }
-
-    public static BufferedImage takeElementImage(WebDriver webDriver, By by) {
-        return takeElementImage(webDriver, by, AShotWrapper.Options.DEFAULT_OPTIONS);
-    }
-
-    /**
-     * takes screenshot of the entire page
-     * while ignoring some elements specified
-     * returns it as a BufferedImage object
-     *
-     * @param webDriver WebDriver instance
-     * @param options AShotWrapper.Options instance; should specify DevicePixelRatio
-     * @return BufferedImage
-     */
-    public static BufferedImage takeEntirePageImage(WebDriver webDriver, Options options) {
-        int timeout = options.getTimeout();
-        float dpr = options.getDevicePixelRatio();
-        List<By> byList = options.getIgnoredElements();
-        AShot aShot = new AShot().
-                coordsProvider(new WebDriverCoordsProvider()).
-                shootingStrategy(
-                        ShootingStrategies.viewportPasting(ShootingStrategies.scaling(dpr), timeout));
-        for (By by : byList) {
-            aShot = aShot.addIgnoredElement(by);
-            //println "added ignored element ${by}";
-        }
-        Screenshot screenshot = aShot.takeScreenshot(webDriver);
-
-        // paint specific web elements in the page with grey color
-        BufferedImage censored = censor(screenshot);
-
-        BufferedImage result;
-        // if required, resize the image to make its byte-size smaller
-        //println "options.getWidth() is ${options.getWidth()}"
-        if (options.getWidth() > 0) {
-            result = resize(censored, options.getWidth());
-        } else {
-            result = censored;
-        }
-        return result;
-    }
-
-    public static BufferedImage takeEntirePageImage(WebDriver webDriver) {
-        return takeEntirePageImage(webDriver, Options.DEFAULT_OPTIONS);
-    }
 
     /**
      * censor means 検閲 in Japanese.
@@ -179,6 +73,150 @@ public class AShotWrapper {
         return outputImage;
     }
 
+    public static void saveElementImage(WebDriver webDriver, By by, File file)
+            throws IOException {
+        saveElementImage(webDriver, by, new Options.Builder().build(), file);
+    }
+
+    /**
+     * takes screenshot of the specified WebElement in the target WebPage,
+     * and save it into the output file in PNG format.
+     *
+     * @param webDriver WebDriver instance
+     * @param by By instance
+     * @param options AShot.Options instance; should specify DevicePixelRatio
+     * @param file file as output
+     * @throws IOException when the parent directory is not there, etc
+     */
+    public static void saveElementImage(WebDriver webDriver, By by, Options options, File file)
+            throws IOException {
+        BufferedImage image = takeElementImage(webDriver, by, options);
+        try (FileOutputStream fos = new FileOutputStream(file)){
+            ImageIO.write(image, "PNG", fos);
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw e;
+        }
+    }
+
+    public static void saveEntirePageImage(WebDriver webDriver, File file) throws IOException {
+        saveEntirePageImage(webDriver, new Options.Builder().build(), file);
+    }
+
+    public static void saveEntirePageImage(WebDriver webDriver, Options options, File file)
+            throws IOException {
+        BufferedImage image = takeEntirePageImage(webDriver, options);
+        try (FileOutputStream fos = new FileOutputStream(file)) {
+            ImageIO.write(image, "PNG", fos);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
+    }
+
+    public static void saveEntirePageImageAsJpeg(WebDriver webDriver, File file, float compressionQuality) throws IOException {
+        saveEntirePageImageAsJpeg(webDriver, new Options.Builder().build(), file, compressionQuality);
+    }
+
+    public static void saveEntirePageImageAsJpeg(WebDriver webDriver, Options options, File file,
+                                                 float compressionQuality) throws IOException {
+        if (compressionQuality < 0.0f || 1.0f < compressionQuality) {
+            throw new IllegalArgumentException("compression quality must be in the range of [0.0f, 1.0f]");
+        }
+        BufferedImage image = takeEntirePageImage(webDriver, options);
+        writeJPEG(image, file, compressionQuality);
+    }
+
+    public static BufferedImage takeElementImage(WebDriver webDriver, By by) {
+        return takeElementImage(webDriver, by, AShotWrapper.Options.DEFAULT_OPTIONS);
+    }
+
+    /**
+     * takes screenshot of the specified WebElement in the target WebPage,
+     * returns it as a BufferedImage object.
+     *
+     * If the specified webElement is not found, then screenshot of whole page
+     * will be returned.
+     *
+     * @param webDriver WebDriver instance
+     * @param by By instance
+     * @param options AShotWrapper.Options instance. Should specify DevicePixelRatio
+     * @return BufferedImage
+     */
+    public static BufferedImage takeElementImage(WebDriver webDriver, By by, Options options) {
+        int timeout = options.getTimeout();
+        WebElement webElement = webDriver.findElement(by);
+        float dpr = options.getDevicePixelRatio();
+        Screenshot screenshot = new AShot().
+                coordsProvider(new WebDriverCoordsProvider()).
+                shootingStrategy(
+                        ShootingStrategies.viewportPasting(ShootingStrategies.scaling(dpr), timeout)).
+                takeScreenshot(webDriver, webElement);
+        return screenshot.getImage();
+    }
+
+    public static BufferedImage takeEntirePageImage(WebDriver webDriver) {
+        return takeEntirePageImage(webDriver, Options.DEFAULT_OPTIONS);
+    }
+
+    /**
+     * takes screenshot of the entire page
+     * while ignoring some elements specified
+     * returns it as a BufferedImage object
+     *
+     * @param webDriver WebDriver instance
+     * @param options AShotWrapper.Options instance; should specify DevicePixelRatio
+     * @return BufferedImage
+     */
+    public static BufferedImage takeEntirePageImage(WebDriver webDriver, Options options) {
+        int timeout = options.getTimeout();
+        float dpr = options.getDevicePixelRatio();
+        List<By> byList = options.getIgnoredElements();
+        AShot aShot = new AShot().
+                coordsProvider(new WebDriverCoordsProvider()).
+                shootingStrategy(
+                        ShootingStrategies.viewportPasting(ShootingStrategies.scaling(dpr), timeout));
+        for (By by : byList) {
+            aShot = aShot.addIgnoredElement(by);
+            //println "added ignored element ${by}";
+        }
+        Screenshot screenshot = aShot.takeScreenshot(webDriver);
+
+        // paint specific web elements in the page with grey color
+        BufferedImage censored = censor(screenshot);
+
+        BufferedImage result;
+        // if required, resize the image to make its byte-size smaller
+        //println "options.getWidth() is ${options.getWidth()}"
+        if (options.getWidth() > 0) {
+            result = resize(censored, options.getWidth());
+        } else {
+            result = censored;
+        }
+        return result;
+    }
+
+    /**
+     * write a BufferedImage object into a file in JPEG format with some compression applied
+     *
+     * @param image BufferedImage
+     * @param file File
+     * @param compressionQuality [0.0f, 1.0f]
+     * @throws IOException when some io failed
+     */
+    public static void writeJPEG(BufferedImage image, File file, float compressionQuality)
+            throws IOException {
+        ImageWriter jpgWriter = ImageIO.getImageWritersByFormatName("jpg").next();
+        ImageWriteParam jpgWriteParam = jpgWriter.getDefaultWriteParam();
+        jpgWriteParam.setCompressionMode(ImageWriteParam.MODE_EXPLICIT);
+        jpgWriteParam.setCompressionQuality(compressionQuality);
+        //
+        ImageOutputStream outputStream = new FileImageOutputStream(file);
+        jpgWriter.setOutput(outputStream);
+        IIOImage outputImage = new IIOImage(image, null, null);
+        jpgWriter.write(null, outputImage, jpgWriteParam);
+        jpgWriter.dispose();
+    }
 
     /**
      *

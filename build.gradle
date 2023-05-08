@@ -1,12 +1,11 @@
 plugins {
-    id 'java'
-    id 'idea'
+    id 'java-library'
     id 'maven-publish'
     id 'signing'
 }
 
 group 'com.kazurayam'
-version '0.1.1'
+version '0.2.0-SNAPSHOT'
 
 ext.isReleaseVersion = ! version.endsWith("SNAPSHOT")
 

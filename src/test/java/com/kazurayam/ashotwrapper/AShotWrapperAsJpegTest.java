@@ -4,6 +4,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -58,10 +59,20 @@ public class AShotWrapperAsJpegTest {
     }
 
     @Test
+    void test_saveElementImageAsJpeg() throws IOException {
+        File screenshotFile = outputDir.resolve("test_saveElementImageAsJpeg.jpg").toFile();
+        By by = By.cssSelector("#menu");
+        AShotWrapper.saveElementImageAsJpeg(driver, by, screenshotFile, 0.9f);
+        assertTrue(screenshotFile.exists());
+        assertTrue(screenshotFile.length() > 0);
+    }
+
+    @Test
     void test_saveEntirePageImageAsJpeg() throws IOException {
         File screenshotFile = outputDir.resolve("test_saveEntirePageImageAsJpeg.jpg").toFile();
         AShotWrapper.saveEntirePageImageAsJpeg(driver, screenshotFile, 0.7f);
         assertTrue(screenshotFile.exists());
+        assertTrue(screenshotFile.length() > 0);
     }
 
     @Test

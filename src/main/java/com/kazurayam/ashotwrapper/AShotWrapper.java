@@ -88,15 +88,35 @@ public class AShotWrapper {
      * @param file file as output
      * @throws IOException when the parent directory is not there, etc
      */
-    public static void saveElementImage(WebDriver webDriver, By by, Options options, File file)
+    public static void saveElementImage(WebDriver webDriver, By by,
+                                        Options options, File file)
             throws IOException {
         BufferedImage image = takeElementImage(webDriver, by, options);
-        try (FileOutputStream fos = new FileOutputStream(file)){
+        try (FileOutputStream fos = new FileOutputStream(file)) {
             ImageIO.write(image, "PNG", fos);
         } catch (IOException e) {
             e.printStackTrace();
             throw e;
         }
+    }
+
+    public static void saveElementImageAsJpeg(WebDriver webDriver, By by,
+                                              File file,
+                                              float compressionQuality) throws IOException {
+        saveElementImageAsJpeg(webDriver, by,
+                new Options.Builder().build(), file, compressionQuality);
+    }
+
+    public static void saveElementImageAsJpeg(WebDriver webDriver, By by,
+                                              Options options, File file,
+                                              float compressionQuality)
+            throws IOException {
+        if (compressionQuality < 0.0f || 1.0f < compressionQuality) {
+            throw new IllegalArgumentException(
+                    "compression quality must be in the range of [0.1f, 1.0f]");
+        }
+        BufferedImage image = takeElementImage(webDriver, by, options);
+        writeJPEG(image, file, compressionQuality);
     }
 
     public static void saveEntirePageImage(WebDriver webDriver, File file) throws IOException {
@@ -120,8 +140,9 @@ public class AShotWrapper {
 
     public static void saveEntirePageImageAsJpeg(WebDriver webDriver, Options options, File file,
                                                  float compressionQuality) throws IOException {
-        if (compressionQuality < 0.0f || 1.0f < compressionQuality) {
-            throw new IllegalArgumentException("compression quality must be in the range of [0.0f, 1.0f]");
+        if (compressionQuality < 0.1f || 1.0f < compressionQuality) {
+            throw new IllegalArgumentException(
+                    "compression quality must be in the range of [0.1f, 1.0f]");
         }
         BufferedImage image = takeEntirePageImage(webDriver, options);
         writeJPEG(image, file, compressionQuality);

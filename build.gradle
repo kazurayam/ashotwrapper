@@ -23,23 +23,26 @@ tasks.withType(GroovyCompile).each {it.groovyOptions.encoding = defaultEncoding 
 
 ext {
     seleniumjavaVersion = '3.141.59'
-    webdrivermanager = '4.4.3'
-    ashotVersion = '1.5.4'
-    junitjupiterVersion = '5.7.0'
 }
 
 dependencies {
 
     // https://mvnrepository.com/artifact/ru.yandex.qatools.ashot/ashot
-    implementation group: 'ru.yandex.qatools.ashot', name: 'ashot', version: "${ashotVersion}"
+    implementation libs.ashot
 
-    implementation "org.seleniumhq.selenium:selenium-java:${seleniumjavaVersion}"
+    implementation libs.seleniumjava
 
     // https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager
-    testImplementation group: 'io.github.bonigarcia', name: 'webdrivermanager', version: "${webdrivermanager}"
+    testImplementation libs.webdrivermanager
 
-    testImplementation "org.junit.jupiter:junit-jupiter-api:${junitjupiterVersion}"
-    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitjupiterVersion}"
+    // https://mvnrepository.com/artifact/org.json/json
+    testImplementation libs.gson
+
+    testImplementation libs.junit.jupiter.api
+    testRuntimeOnly libs.junit.jupiter.engine
+
+    implementation libs.slf4j.api
+    testImplementation libs.slf4j.simple
 }
 
 java {

@@ -55,7 +55,9 @@ public class AShotWrapperAsJpegTest {
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(timeout, TimeUnit.MILLISECONDS);
         driver.manage().window().setSize(new Dimension(1024, 1000));
-        driver.navigate().to("http://myadmin.kazurayam.com/");
+        //driver.navigate().to("https://community.developer.atlassian.com/");
+        //driver.navigate().to("https://offermanwoodshop.com/");
+        driver.navigate().to("https://www.fsa.go.jp/kouhou/index.html");
     }
 
     @Test
@@ -77,6 +79,7 @@ public class AShotWrapperAsJpegTest {
 
     @Test
     void test_verifyImageSize() throws IOException {
+
         Reporter rp = new Reporter();
         File png = outputDir.resolve("screenshot.png").toFile();
         AShotWrapper.saveEntirePageImage(driver, png);

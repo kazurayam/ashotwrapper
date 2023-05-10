@@ -1,6 +1,6 @@
 == Sample codes
 
-Here I will present a JUnit5 test class link:https://github.com/kazurayam/ashotwrapper/blob/develop/src/test/java/com/kazurayam/ashotwrapper/samples/AShotWrapperDemo.java[`com.kazurayam.ashotwrapper.samples.AShotWrapperDemo`] to demonstrate how to use the `com.kazurayam.ashotwrapper.AShotWrapper` class.
+Here I will present a JUnit5 test class link:https://github.com/kazurayam/ashotwrapper/blob/develop/src/test/java/com/kazurayam/ashotwrapper/samples/AShotWrapperDemo.java[`com.kazurayam.ashotwrapper.samples.AShotWrapperDemo`] to demonstrate how to use the `AShotWrapper` class.
 
 The test class starts with the package statement, import statements, class declaration and some boilerplate methods; it is as follows:
 

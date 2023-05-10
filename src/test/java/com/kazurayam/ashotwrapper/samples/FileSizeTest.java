@@ -7,12 +7,14 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
+import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
@@ -37,7 +39,7 @@ import java.util.concurrent.TimeUnit;
  * - "https://www.fsa.go.jp/kouhou/index.html" --- page without photos
  */
 
-//@Disabled   // this class takes long time to finish.
+//@Disabled   // this class takes 46 seconds to finish.
 public class FileSizeTest {
 
     private static final Path outputDir =
@@ -132,22 +134,25 @@ public class FileSizeTest {
                 Path dir = outputDir.resolve(host);
                 Files.createDirectories(dir);
 
-                // take a screenshot to save as PNG
+                // take a screenshot of the target URL
+                BufferedImage bi = AShotWrapper.takeEntirePageImage(driver);
+                // save as PNG
                 File png = dir.resolve(host + ".png").toFile();
-                AShotWrapper.saveEntirePageImage(driver, png);
+                AShotWrapper.writePNG(bi, png);
                 rp.setPNG(new FileQualityPair(png, 1.0f));
 
                 // take 10 screenshots as JPEG with step-wised compression quality
                 for (int i = 10; i > 0; i--) {
                     float quality = i * 0.1f;
                     File jpg = dir.resolve(host + "-" + (i * 10) + ".jpg").toFile();
-                    AShotWrapper.saveEntirePageImageAsJpeg(driver, jpg, quality);
+                    AShotWrapper.writeJPEG(bi, jpg, quality);
                     rp.addJPEG(new FileQualityPair(jpg, quality));
                 }
 
                 // compile the report in Markdown format
-                File reportFile = dir.resolve(host + "-report.md").toFile();
-                rp.report(reportFile);
+                rp.reportInMarkdown(dir.resolve(host + "-report.md").toFile());
+                // compile the report in Asciidoc format
+                rp.reportInAsciidoc(dir.resolve(host + "-report.adoc").toFile());
 
             } catch (IOException e) {
                 throw new RuntimeException(e);
@@ -179,7 +184,11 @@ public class FileSizeTest {
         void addJPEG(FileQualityPair jpeg) {
             this.jpegs.add(jpeg);
         }
-        void report(File markdown) throws IOException {
+
+        /*
+         * compile a report in Markdown format
+         */
+        void reportInMarkdown(File markdown) throws IOException {
             StringBuilder sb = new StringBuilder();
             sb.append("# " + url + "\n\n");
             sb.append(feature + "\n\n");
@@ -200,6 +209,43 @@ public class FileSizeTest {
             String text = sb.toString();
             Files.write(markdown.toPath(), text.getBytes());
         }
+
+        /*
+         * compile a report in Asciidoc format
+         */
+        void reportInAsciidoc(File adoc) throws IOException {
+            String urlPrefix = "https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest";
+            StringBuilder sb = new StringBuilder();
+            sb.append("=== " + url + "\n\n");
+            sb.append(feature + "\n\n");
+            sb.append("|===\n");
+            sb.append("|File|Quality|Size(bytes)|% to PNG\n");
+            sb.append("\n");
+            // the row of PNG
+            sb.append(String.format("| link:%s/%s/%s[%s]\n",
+                    urlPrefix, png.getFile().getName(),
+                    png.getFile().getName(), png.getFile().getName()));
+            sb.append(String.format("| %1.1f\n", png.getQuality()));
+            sb.append(String.format("| %,d\n", png.getFile().length()));
+            sb.append(String.format("| %d%%\n", 100));
+            sb.append("\n");
+            // the rows of JPEG
+            jpegs.forEach(pair -> {
+                sb.append(String.format("| link:%s/%s/%s[%s]\n",
+                        urlPrefix, pair.getFile().getName(),
+                        pair.getFile().getName(), pair.getFile().getName()));
+                sb.append(String.format("| %1.1f\n", pair.getQuality()));
+                sb.append(String.format("| %,d\n", pair.getFile().length()));
+                sb.append(String.format("| %d%%\n",
+                        calcPercentageToPNG(pair.getFile().length(), png.getFile().length())));
+                sb.append("\n");
+            });
+            sb.append("|===\n");
+            sb.append(description + "\n\n");
+            String text = sb.toString();
+            Files.write(adoc.toPath(), text.getBytes());
+        }
+
         private int calcPercentageToPNG(long jpegLength, long pngLength) {
             long delta = pngLength - jpegLength;
             return 100 - (int)((delta * 100) / pngLength);

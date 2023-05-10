@@ -1,17 +1,17 @@
 [
   {
     "URL": "https://offermanwoodshop.com/",
-    "feature": "A web page that is composed of lots of photos",
-    "description": "Photo-rich page results in the screenshots of very large size. PNG becomes bigger than JPEG of the compression quality 1.0. PNG is not suitable for photo-rich pages."
+    "feature": "A web page that is composed of lots of eye-catching photos",
+    "description": "Photo-rich page results in the screenshots of very large size. PNG is surprisingly lager than JPEG of the compression quality 1.0. PNG is not suitable for photo-rich pages."
   },
   {
     "URL": "https://www.fsa.go.jp/kouhou/index.html",
-    "feature": "Text-rich page without photos",
-    "description": "Text-rich page results in the screenshots of small size. PNG becomes smaller than JPEG of the compression quality 1.0. PNG is suitable for text-rich pages."
+    "feature": "Text-rich page without eye-catching photos",
+    "description": "Text-rich page results in the screenshots of small size. PNG is smaller than JPEG of the compression quality 1.0. PNG is suitable for text-rich pages."
   },
   {
     "URL": "https://community.developer.atlassian.com/",
-    "feature": "Good mixture of texts and images. Often seen.",
-    "description": "In this case, PNG has similar file size as JPEG of the compression quality 1.0. You can compress JPEG; it's an advantage."
+    "feature": "Mixture of texts and small number of images. There are a lot of web sites on the net like this.",
+    "description": "In this case, PNG has similar file size as JPEG of the compression quality 1.0. JPEG 0.9f is quite similar to PNG."
   }
 ]

@@ -9,6 +9,12 @@
         -   <a href="#save-a-screenshot-of-an-element-in-the-page-in-png" id="toc-save-a-screenshot-of-an-element-in-the-page-in-png">Save a screenshot of an element in the page in PNG</a>
         -   <a href="#save-a-screenshot-of-the-entire-page-in-jpeg" id="toc-save-a-screenshot-of-the-entire-page-in-jpeg">Save a screenshot of the entire page in JPEG</a>
     -   <a href="#study-how-to-reduce-file-size-of-screenshots-using-jpeg-format" id="toc-study-how-to-reduce-file-size-of-screenshots-using-jpeg-format">Study how to reduce file size of screenshots using JPEG format</a>
+        -   <a href="#web-page-with-lots-of-photos" id="toc-web-page-with-lots-of-photos">Web page with lots of photos</a>
+        -   <a href="#httpsoffermanwoodshop-com" id="toc-httpsoffermanwoodshop-com">https://offermanwoodshop.com/</a>
+        -   <a href="#text-only-web-page" id="toc-text-only-web-page">Text-only web page</a>
+        -   <a href="#httpswww-fsa-go-jpkouhouindex-html" id="toc-httpswww-fsa-go-jpkouhouindex-html">https://www.fsa.go.jp/kouhou/index.html</a>
+        -   <a href="#ordinary-web-page-with-text-and-a-few-images" id="toc-ordinary-web-page-with-text-and-a-few-images">Ordinary web page with text and a few images</a>
+        -   <a href="#httpscommunity-developer-atlassian-com" id="toc-httpscommunity-developer-atlassian-com">https://community.developer.atlassian.com/</a>
 
 # AShotWrapper
 
@@ -225,3 +231,284 @@ I have written a method `writeJPEG` which does this. With this method, `AShotWra
 In theory, the smaller the compression quality is, we can expect the resulting JPEG file will have smaller size at the cost of poorer quality of image view.
 
 Practically, how large the screenshots of web pages will be in PNG, in JPEG with 1.0f, 0.9f, …​ , 0.1f? Different design of web pages may result different file sizes. My ultimate question is, **given a URL to take screenshot, which format should I use: PNG or JPEG? If I choose JPEG, then what value of compression quality should I specify?**
+
+In order to answer to the question, I have created a JUnit5 test, named [FileSizeTest](https://github.com/kazurayam/ashotwrapper/blob/develop/src/test/java/com/kazurayam/ashotwrapper/samples/FileSizeTest.java). This test targets 3 public URL, take screenshots in PNG and JPEG with varying compression quality; the test compiles a report where you can find how large in % the each JPEG files are against the baseline PNG file. Please file the reports that follow.
+
+### Web page with lots of photos
+
+### <https://offermanwoodshop.com/>
+
+A web page that is composed of lots of eye-catching photos
+
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">File</th>
+<th style="text-align: left;">Quality</th>
+<th style="text-align: left;">Size(bytes)</th>
+<th style="text-align: left;">% to PNG</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><p><a href="https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/offermanwoodshop.com.png/offermanwoodshop.com.png">offermanwoodshop.com.png</a></p></td>
+<td style="text-align: left;"><p>1.0</p></td>
+<td style="text-align: left;"><p>6,585,859</p></td>
+<td style="text-align: left;"><p>100%</p></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><p><a href="https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/offermanwoodshop.com-100.jpg/offermanwoodshop.com-100.jpg">offermanwoodshop.com-100.jpg</a></p></td>
+<td style="text-align: left;"><p>1.0</p></td>
+<td style="text-align: left;"><p>3,039,800</p></td>
+<td style="text-align: left;"><p>47%</p></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><p><a href="https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/offermanwoodshop.com-90.jpg/offermanwoodshop.com-90.jpg">offermanwoodshop.com-90.jpg</a></p></td>
+<td style="text-align: left;"><p>0.9</p></td>
+<td style="text-align: left;"><p>1,186,111</p></td>
+<td style="text-align: left;"><p>19%</p></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><p><a href="https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/offermanwoodshop.com-80.jpg/offermanwoodshop.com-80.jpg">offermanwoodshop.com-80.jpg</a></p></td>
+<td style="text-align: left;"><p>0.8</p></td>
+<td style="text-align: left;"><p>843,190</p></td>
+<td style="text-align: left;"><p>13%</p></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><p><a href="https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/offermanwoodshop.com-70.jpg/offermanwoodshop.com-70.jpg">offermanwoodshop.com-70.jpg</a></p></td>
+<td style="text-align: left;"><p>0.7</p></td>
+<td style="text-align: left;"><p>692,074</p></td>
+<td style="text-align: left;"><p>11%</p></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><p><a href="https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/offermanwoodshop.com-60.jpg/offermanwoodshop.com-60.jpg">offermanwoodshop.com-60.jpg</a></p></td>
+<td style="text-align: left;"><p>0.6</p></td>
+<td style="text-align: left;"><p>595,289</p></td>
+<td style="text-align: left;"><p>10%</p></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><p><a href="https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/offermanwoodshop.com-50.jpg/offermanwoodshop.com-50.jpg">offermanwoodshop.com-50.jpg</a></p></td>
+<td style="text-align: left;"><p>0.5</p></td>
+<td style="text-align: left;"><p>531,038</p></td>
+<td style="text-align: left;"><p>9%</p></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><p><a href="https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/offermanwoodshop.com-40.jpg/offermanwoodshop.com-40.jpg">offermanwoodshop.com-40.jpg</a></p></td>
+<td style="text-align: left;"><p>0.4</p></td>
+<td style="text-align: left;"><p>469,536</p></td>
+<td style="text-align: left;"><p>8%</p></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><p><a href="https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/offermanwoodshop.com-30.jpg/offermanwoodshop.com-30.jpg">offermanwoodshop.com-30.jpg</a></p></td>
+<td style="text-align: left;"><p>0.3</p></td>
+<td style="text-align: left;"><p>404,366</p></td>
+<td style="text-align: left;"><p>7%</p></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><p><a href="https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/offermanwoodshop.com-20.jpg/offermanwoodshop.com-20.jpg">offermanwoodshop.com-20.jpg</a></p></td>
+<td style="text-align: left;"><p>0.2</p></td>
+<td style="text-align: left;"><p>323,816</p></td>
+<td style="text-align: left;"><p>5%</p></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><p><a href="https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/offermanwoodshop.com-10.jpg/offermanwoodshop.com-10.jpg">offermanwoodshop.com-10.jpg</a></p></td>
+<td style="text-align: left;"><p>0.1</p></td>
+<td style="text-align: left;"><p>223,742</p></td>
+<td style="text-align: left;"><p>4%</p></td>
+</tr>
+</tbody>
+</table>
+
+Photo-rich page results in the screenshots of very large size. PNG is surprisingly lager than JPEG of the compression quality 1.0. PNG is not suitable for photo-rich pages.
+
+### Text-only web page
+
+### <https://www.fsa.go.jp/kouhou/index.html>
+
+Text-rich page without eye-catching photos
+
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">File</th>
+<th style="text-align: left;">Quality</th>
+<th style="text-align: left;">Size(bytes)</th>
+<th style="text-align: left;">% to PNG</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><p><a href="https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/www.fsa.go.jp.png/www.fsa.go.jp.png">www.fsa.go.jp.png</a></p></td>
+<td style="text-align: left;"><p>1.0</p></td>
+<td style="text-align: left;"><p>295,798</p></td>
+<td style="text-align: left;"><p>100%</p></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><p><a href="https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/www.fsa.go.jp-100.jpg/www.fsa.go.jp-100.jpg">www.fsa.go.jp-100.jpg</a></p></td>
+<td style="text-align: left;"><p>1.0</p></td>
+<td style="text-align: left;"><p>569,674</p></td>
+<td style="text-align: left;"><p>192%</p></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><p><a href="https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/www.fsa.go.jp-90.jpg/www.fsa.go.jp-90.jpg">www.fsa.go.jp-90.jpg</a></p></td>
+<td style="text-align: left;"><p>0.9</p></td>
+<td style="text-align: left;"><p>280,978</p></td>
+<td style="text-align: left;"><p>95%</p></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><p><a href="https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/www.fsa.go.jp-80.jpg/www.fsa.go.jp-80.jpg">www.fsa.go.jp-80.jpg</a></p></td>
+<td style="text-align: left;"><p>0.8</p></td>
+<td style="text-align: left;"><p>214,878</p></td>
+<td style="text-align: left;"><p>73%</p></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><p><a href="https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/www.fsa.go.jp-70.jpg/www.fsa.go.jp-70.jpg">www.fsa.go.jp-70.jpg</a></p></td>
+<td style="text-align: left;"><p>0.7</p></td>
+<td style="text-align: left;"><p>182,895</p></td>
+<td style="text-align: left;"><p>62%</p></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><p><a href="https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/www.fsa.go.jp-60.jpg/www.fsa.go.jp-60.jpg">www.fsa.go.jp-60.jpg</a></p></td>
+<td style="text-align: left;"><p>0.6</p></td>
+<td style="text-align: left;"><p>161,678</p></td>
+<td style="text-align: left;"><p>55%</p></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><p><a href="https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/www.fsa.go.jp-50.jpg/www.fsa.go.jp-50.jpg">www.fsa.go.jp-50.jpg</a></p></td>
+<td style="text-align: left;"><p>0.5</p></td>
+<td style="text-align: left;"><p>146,857</p></td>
+<td style="text-align: left;"><p>50%</p></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><p><a href="https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/www.fsa.go.jp-40.jpg/www.fsa.go.jp-40.jpg">www.fsa.go.jp-40.jpg</a></p></td>
+<td style="text-align: left;"><p>0.4</p></td>
+<td style="text-align: left;"><p>133,145</p></td>
+<td style="text-align: left;"><p>46%</p></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><p><a href="https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/www.fsa.go.jp-30.jpg/www.fsa.go.jp-30.jpg">www.fsa.go.jp-30.jpg</a></p></td>
+<td style="text-align: left;"><p>0.3</p></td>
+<td style="text-align: left;"><p>117,464</p></td>
+<td style="text-align: left;"><p>40%</p></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><p><a href="https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/www.fsa.go.jp-20.jpg/www.fsa.go.jp-20.jpg">www.fsa.go.jp-20.jpg</a></p></td>
+<td style="text-align: left;"><p>0.2</p></td>
+<td style="text-align: left;"><p>98,488</p></td>
+<td style="text-align: left;"><p>34%</p></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><p><a href="https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/www.fsa.go.jp-10.jpg/www.fsa.go.jp-10.jpg">www.fsa.go.jp-10.jpg</a></p></td>
+<td style="text-align: left;"><p>0.1</p></td>
+<td style="text-align: left;"><p>73,360</p></td>
+<td style="text-align: left;"><p>25%</p></td>
+</tr>
+</tbody>
+</table>
+
+Text-rich page results in the screenshots of small size. PNG is smaller than JPEG of the compression quality 1.0. PNG is suitable for text-rich pages.
+
+### Ordinary web page with text and a few images
+
+### <https://community.developer.atlassian.com/>
+
+Mixture of texts and small number of images. There are a lot of web sites on the net like this.
+
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">File</th>
+<th style="text-align: left;">Quality</th>
+<th style="text-align: left;">Size(bytes)</th>
+<th style="text-align: left;">% to PNG</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><p><a href="https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/community.developer.atlassian.com.png/community.developer.atlassian.com.png">community.developer.atlassian.com.png</a></p></td>
+<td style="text-align: left;"><p>1.0</p></td>
+<td style="text-align: left;"><p>579,063</p></td>
+<td style="text-align: left;"><p>100%</p></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><p><a href="https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/community.developer.atlassian.com-100.jpg/community.developer.atlassian.com-100.jpg">community.developer.atlassian.com-100.jpg</a></p></td>
+<td style="text-align: left;"><p>1.0</p></td>
+<td style="text-align: left;"><p>1,278,568</p></td>
+<td style="text-align: left;"><p>220%</p></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><p><a href="https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/community.developer.atlassian.com-90.jpg/community.developer.atlassian.com-90.jpg">community.developer.atlassian.com-90.jpg</a></p></td>
+<td style="text-align: left;"><p>0.9</p></td>
+<td style="text-align: left;"><p>557,330</p></td>
+<td style="text-align: left;"><p>97%</p></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><p><a href="https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/community.developer.atlassian.com-80.jpg/community.developer.atlassian.com-80.jpg">community.developer.atlassian.com-80.jpg</a></p></td>
+<td style="text-align: left;"><p>0.8</p></td>
+<td style="text-align: left;"><p>405,737</p></td>
+<td style="text-align: left;"><p>71%</p></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><p><a href="https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/community.developer.atlassian.com-70.jpg/community.developer.atlassian.com-70.jpg">community.developer.atlassian.com-70.jpg</a></p></td>
+<td style="text-align: left;"><p>0.7</p></td>
+<td style="text-align: left;"><p>338,469</p></td>
+<td style="text-align: left;"><p>59%</p></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><p><a href="https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/community.developer.atlassian.com-60.jpg/community.developer.atlassian.com-60.jpg">community.developer.atlassian.com-60.jpg</a></p></td>
+<td style="text-align: left;"><p>0.6</p></td>
+<td style="text-align: left;"><p>293,192</p></td>
+<td style="text-align: left;"><p>51%</p></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><p><a href="https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/community.developer.atlassian.com-50.jpg/community.developer.atlassian.com-50.jpg">community.developer.atlassian.com-50.jpg</a></p></td>
+<td style="text-align: left;"><p>0.5</p></td>
+<td style="text-align: left;"><p>262,529</p></td>
+<td style="text-align: left;"><p>46%</p></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><p><a href="https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/community.developer.atlassian.com-40.jpg/community.developer.atlassian.com-40.jpg">community.developer.atlassian.com-40.jpg</a></p></td>
+<td style="text-align: left;"><p>0.4</p></td>
+<td style="text-align: left;"><p>234,656</p></td>
+<td style="text-align: left;"><p>41%</p></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><p><a href="https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/community.developer.atlassian.com-30.jpg/community.developer.atlassian.com-30.jpg">community.developer.atlassian.com-30.jpg</a></p></td>
+<td style="text-align: left;"><p>0.3</p></td>
+<td style="text-align: left;"><p>204,563</p></td>
+<td style="text-align: left;"><p>36%</p></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><p><a href="https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/community.developer.atlassian.com-20.jpg/community.developer.atlassian.com-20.jpg">community.developer.atlassian.com-20.jpg</a></p></td>
+<td style="text-align: left;"><p>0.2</p></td>
+<td style="text-align: left;"><p>168,165</p></td>
+<td style="text-align: left;"><p>30%</p></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><p><a href="https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/community.developer.atlassian.com-10.jpg/community.developer.atlassian.com-10.jpg">community.developer.atlassian.com-10.jpg</a></p></td>
+<td style="text-align: left;"><p>0.1</p></td>
+<td style="text-align: left;"><p>120,795</p></td>
+<td style="text-align: left;"><p>21%</p></td>
+</tr>
+</tbody>
+</table>
+
+In this case, PNG has similar file size as JPEG of the compression quality 1.0. JPEG 0.9f is quite similar to PNG.

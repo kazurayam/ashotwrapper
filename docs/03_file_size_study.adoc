@@ -15,7 +15,19 @@ In theory, the smaller the compression quality is, we can expect the resulting J
 
 Practically, how large the screenshots of web pages will be in PNG, in JPEG with 1.0f, 0.9f, ... , 0.1f? Different design of web pages may result different file sizes. My ultimate question is, **given a URL to take screenshot, which format should I use: PNG or JPEG? If I choose JPEG, then what value of compression quality should I specify?**
 
+In order to answer to the question, I have created a JUnit5 test, named link:https://github.com/kazurayam/ashotwrapper/blob/develop/src/test/java/com/kazurayam/ashotwrapper/samples/FileSizeTest.java[FileSizeTest]. This test targets 3 public URL, take screenshots in PNG and JPEG with varying compression quality; the test compiles a report where you can find how large in % the each JPEG files are against the baseline PNG file. Please file the reports that follow.
 
+=== Web page with lots of photos
+
+include::samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/offermanwoodshop.com/offermanwoodshop.com-report.adoc[]
+
+=== Text-only web page
+
+include::samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/www.fsa.go.jp/www.fsa.go.jp-report.adoc[]
+
+=== Ordinary web page with text and a few images
+
+include::samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/community.developer.atlassian.com/community.developer.atlassian.com-report.adoc[]
 
 
 

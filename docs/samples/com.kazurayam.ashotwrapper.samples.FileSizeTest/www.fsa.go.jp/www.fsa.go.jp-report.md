@@ -1,6 +1,6 @@
 # https://www.fsa.go.jp/kouhou/index.html
 
-Text-rich page without photos
+Text-rich page without eye-catching photos
 
 |File|Quality|Size(bytes)|% to PNG|
 |:---|------:|----------:|-----:|
@@ -16,5 +16,5 @@ Text-rich page without photos
 | [www.fsa.go.jp-20.jpg](./www.fsa.go.jp-20.jpg) | 0.2 | 98,488 | 34% |
 | [www.fsa.go.jp-10.jpg](./www.fsa.go.jp-10.jpg) | 0.1 | 73,360 | 25% |
 
-Text-rich page results in the screenshots of small size. PNG becomes smaller than JPEG of the compression quality 1.0. PNG is suitable for text-rich pages.
+Text-rich page results in the screenshots of small size. PNG is smaller than JPEG of the compression quality 1.0. PNG is suitable for text-rich pages.
 

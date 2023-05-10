@@ -41,7 +41,7 @@ import java.util.concurrent.TimeUnit;
 public class FileSizeTest {
 
     private static final Path outputDir =
-            Paths.get(".").resolve("build/tmp/testOutput")
+            Paths.get(".").resolve("docs/samples")
                     .resolve(FileSizeTest.class.getName());
 
     private static WebDriver driver;

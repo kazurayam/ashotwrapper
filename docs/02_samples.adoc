@@ -47,5 +47,14 @@ OUTPUT: link:https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.asho
 
 
 === Save a screenshot of the entire page in JPEG
-=== Save a screenshot of the current viewport in JPEG
-=== Save a screenshot of an element in the page in JPEG
+
+You can save screenshot images into files in JPEG format. In some cases, a screenshot in JPEG of a web page can be much smaller than PNG.
+
+[source]
+----
+include::../src/test/java/com/kazurayam/ashotwrapper/samples/AShotWrapperDemo.java[lines=97..103]
+----
+
+OUTPUT: link:https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.AShotWrapperDemo/test_saveEntirePageImageAsJpeg.jpg[entire page screenshot in JPEG]
+
+You can also take screenshot of current viewport and selected HTML element in JPEG as well.

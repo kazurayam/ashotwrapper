@@ -1,1 +1,22 @@
-== Study how to reduce the screenshot file size
+== Study how to reduce file size of screenshots using JPEG format
+
+Selenium WebDriver supports taking screenshot of the browser window. See link:https://www.browserstack.com/guide/take-screenshots-in-selenium[tutorials]. WebDriver produces files always in PNG format. Sometimes, screenshots in PNG format can be very large in byte size. For example, link:[this PNG file] is as large as 6.5 Mega bytes. If you are going to take many screenshots in your testing project, the size of screenshot images matters. Large image files are difficult to manage and utilize. So I want to make the screenshot image files as small as possible. But how to?
+
+I found some libraries that compress a PNG file into another PNG file of smaller size, for example link:https://pngquant.org/[Pngquant]. But I do not like to depend on those external libraries. I want a solution that I can use on top of Java8. A well-know resolution is to save screenshots in JPEG, not PNG, while specifying compression quality.
+
+I have written a method `writeJPEG` which does this. With this method, `AShotWrapper` can save any `BufferedImage` object into JPEG file which specifying compression quality like 1.0f, 0.9f, 0.8f, 0.7f, ... , 0.1f.
+
+[source]
+----
+include::../src/main/java/com/kazurayam/ashotwrapper/AShotWrapper.java[lines=257..283]
+----
+
+In theory, the smaller the compression quality is, we can expect the resulting JPEG file will have smaller size at the cost of poorer quality of image view.
+
+Practically, how large the screenshots of web pages will be in PNG, in JPEG with 1.0f, 0.9f, ... , 0.1f? Different design of web pages may result different file sizes. My ultimate question is, **given a URL to take screenshot, which format should I use: PNG or JPEG? If I choose JPEG, then what value of compression quality should I specify?**
+
+
+
+
+
+

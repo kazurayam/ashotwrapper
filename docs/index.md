@@ -8,9 +8,7 @@
         -   <a href="#save-a-screenshot-of-the-current-viewport-in-png" id="toc-save-a-screenshot-of-the-current-viewport-in-png">Save a screenshot of the current viewport in PNG</a>
         -   <a href="#save-a-screenshot-of-an-element-in-the-page-in-png" id="toc-save-a-screenshot-of-an-element-in-the-page-in-png">Save a screenshot of an element in the page in PNG</a>
         -   <a href="#save-a-screenshot-of-the-entire-page-in-jpeg" id="toc-save-a-screenshot-of-the-entire-page-in-jpeg">Save a screenshot of the entire page in JPEG</a>
-        -   <a href="#save-a-screenshot-of-the-current-viewport-in-jpeg" id="toc-save-a-screenshot-of-the-current-viewport-in-jpeg">Save a screenshot of the current viewport in JPEG</a>
-        -   <a href="#save-a-screenshot-of-an-element-in-the-page-in-jpeg" id="toc-save-a-screenshot-of-an-element-in-the-page-in-jpeg">Save a screenshot of an element in the page in JPEG</a>
-    -   <a href="#study-how-to-reduce-the-screenshot-file-size" id="toc-study-how-to-reduce-the-screenshot-file-size">Study how to reduce the screenshot file size</a>
+    -   <a href="#study-how-to-reduce-file-size-of-screenshots-using-jpeg-format" id="toc-study-how-to-reduce-file-size-of-screenshots-using-jpeg-format">Study how to reduce file size of screenshots using JPEG format</a>
 
 # AShotWrapper
 
@@ -174,8 +172,56 @@ OUTPUT: [element screenshot in PNG](https://kazurayam.github.io/ashotwrapper/sam
 
 ### Save a screenshot of the entire page in JPEG
 
-### Save a screenshot of the current viewport in JPEG
+You can save screenshot images into files in JPEG format. In some cases, a screenshot in JPEG of a web page can be much smaller than PNG.
 
-### Save a screenshot of an element in the page in JPEG
+        @Test
+        void test_saveEntirePageImageAsJpeg() throws IOException {
+            driver.navigate().to("https://www.iana.org/domains/reserved");
+            File file = outputDir.resolve("test_saveEntirePageImageAsJpeg.jpg").toFile();
+            AShotWrapper.saveEntirePageImageAsJpeg(driver, file, 0.7f);
+            assertTrue(file.exists());
+        }
 
-## Study how to reduce the screenshot file size
+OUTPUT: [entire page screenshot in JPEG](https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.AShotWrapperDemo/test_saveEntirePageImageAsJpeg.jpg)
+
+You can also take screenshot of current viewport and selected HTML element in JPEG as well.
+
+## Study how to reduce file size of screenshots using JPEG format
+
+Selenium WebDriver supports taking screenshot of the browser window. See [tutorials](https://www.browserstack.com/guide/take-screenshots-in-selenium). WebDriver produces files always in PNG format. Sometimes, screenshots in PNG format can be very large in byte size. For example, [this PNG file]() is as large as 6.5 Mega bytes. If you are going to take many screenshots in your testing project, the size of screenshot images matters. Large image files are difficult to manage and utilize. So I want to make the screenshot image files as small as possible. But how to?
+
+I found some libraries that compress a PNG file into another PNG file of smaller size, for example [Pngquant](https://pngquant.org/). But I do not like to depend on those external libraries. I want a solution that I can use on top of Java8. A well-know resolution is to save screenshots in JPEG, not PNG, while specifying compression quality.
+
+I have written a method `writeJPEG` which does this. With this method, `AShotWrapper` can save any `BufferedImage` object into JPEG file which specifying compression quality like 1.0f, 0.9f, 0.8f, 0.7f, …​ , 0.1f.
+
+        /**
+         * write a BufferedImage object into a file in JPEG format with some compression applied
+         *
+         * @param image BufferedImage
+         * @param file File
+         * @param compressionQuality [0.0f, 1.0f]
+         * @throws IOException when some io failed
+         */
+        public static void writeJPEG(BufferedImage image, File file, float compressionQuality)
+                throws IOException {
+            Objects.requireNonNull(image);
+            Objects.requireNonNull(file);
+            if (compressionQuality < 0.1f || 1.0f < compressionQuality) {
+                throw new IllegalArgumentException("compressionQuality must be in the range of [0.1f, 1.0f]");
+            }
+            ImageWriter jpgWriter = ImageIO.getImageWritersByFormatName("jpg").next();
+            ImageWriteParam jpgWriteParam = jpgWriter.getDefaultWriteParam();
+            jpgWriteParam.setCompressionMode(ImageWriteParam.MODE_EXPLICIT);
+            jpgWriteParam.setCompressionQuality(compressionQuality);
+            //
+            ImageOutputStream outputStream = new FileImageOutputStream(file);
+            jpgWriter.setOutput(outputStream);
+            IIOImage outputImage =
+                    new IIOImage(removeAlphaChannel(image), null, null);
+            jpgWriter.write(null, outputImage, jpgWriteParam);
+            jpgWriter.dispose();
+        }
+
+In theory, the smaller the compression quality is, we can expect the resulting JPEG file will have smaller size at the cost of poorer quality of image view.
+
+Practically, how large the screenshots of web pages will be in PNG, in JPEG with 1.0f, 0.9f, …​ , 0.1f? Different design of web pages may result different file sizes. My ultimate question is, **given a URL to take screenshot, which format should I use: PNG or JPEG? If I choose JPEG, then what value of compression quality should I specify?**

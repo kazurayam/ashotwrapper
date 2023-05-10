@@ -264,6 +264,11 @@ public class AShotWrapper {
      */
     public static void writeJPEG(BufferedImage image, File file, float compressionQuality)
             throws IOException {
+        Objects.requireNonNull(image);
+        Objects.requireNonNull(file);
+        if (compressionQuality < 0.1f || 1.0f < compressionQuality) {
+            throw new IllegalArgumentException("compressionQuality must be in the range of [0.1f, 1.0f]");
+        }
         ImageWriter jpgWriter = ImageIO.getImageWritersByFormatName("jpg").next();
         ImageWriteParam jpgWriteParam = jpgWriter.getDefaultWriteParam();
         jpgWriteParam.setCompressionMode(ImageWriteParam.MODE_EXPLICIT);

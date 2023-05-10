@@ -92,12 +92,7 @@ public class AShotWrapper {
                                         Options options, File file)
             throws IOException {
         BufferedImage image = takeElementImage(webDriver, by, options);
-        try (FileOutputStream fos = new FileOutputStream(file)) {
-            ImageIO.write(image, "PNG", fos);
-        } catch (IOException e) {
-            e.printStackTrace();
-            throw e;
-        }
+        writePNG(image, file);
     }
 
     public static void saveElementImageAsJpeg(WebDriver webDriver, By by,
@@ -126,12 +121,7 @@ public class AShotWrapper {
     public static void saveEntirePageImage(WebDriver webDriver, Options options, File file)
             throws IOException {
         BufferedImage image = takeEntirePageImage(webDriver, options);
-        try (FileOutputStream fos = new FileOutputStream(file)) {
-            ImageIO.write(image, "PNG", fos);
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw e;
-        }
+        writePNG(image, file);
     }
 
     public static void saveEntirePageImageAsJpeg(WebDriver webDriver, File file, float compressionQuality) throws IOException {
@@ -145,6 +135,24 @@ public class AShotWrapper {
                     "compression quality must be in the range of [0.1f, 1.0f]");
         }
         BufferedImage image = takeEntirePageImage(webDriver, options);
+        writeJPEG(image, file, compressionQuality);
+    }
+
+    public static void savePageImage(WebDriver webDriver, File file) throws IOException {
+        savePageImage(webDriver, new Options.Builder().build(), file);
+    }
+
+    public static void savePageImage(WebDriver webDriver, Options options, File file) throws IOException {
+        BufferedImage image = takePageImage(webDriver, options);
+        writePNG(image, file);
+    }
+
+    public static void savePageImageAsJpeg(WebDriver webDriver, File file, float compressionQuality) throws IOException {
+        savePageImageAsJpeg(webDriver, new Options.Builder().build(), file, compressionQuality);
+    }
+
+    public static void savePageImageAsJpeg(WebDriver webDriver, Options options, File file, float compressionQuality) throws IOException {
+        BufferedImage image = takePageImage(webDriver, options);
         writeJPEG(image, file, compressionQuality);
     }
 
@@ -192,11 +200,15 @@ public class AShotWrapper {
     public static BufferedImage takeEntirePageImage(WebDriver webDriver, Options options) {
         int timeout = options.getTimeout();
         float dpr = options.getDevicePixelRatio();
-        List<By> byList = options.getIgnoredElements();
         AShot aShot = new AShot().
                 coordsProvider(new WebDriverCoordsProvider()).
                 shootingStrategy(
                         ShootingStrategies.viewportPasting(ShootingStrategies.scaling(dpr), timeout));
+        return perform(webDriver, aShot, options);
+    }
+
+    private static BufferedImage perform(WebDriver webDriver, AShot aShot, Options options) {
+        List<By> byList = options.getIgnoredElements();
         for (By by : byList) {
             aShot = aShot.addIgnoredElement(by);
             //println "added ignored element ${by}";
@@ -217,6 +229,27 @@ public class AShotWrapper {
         return result;
     }
 
+    public static BufferedImage takePageImage(WebDriver webDriver) {
+        return takePageImage(webDriver, Options.DEFAULT_OPTIONS);
+    }
+
+    /**
+     * takes screenshot of the current viewport of the web page
+     * while ignoring some elements specified
+     * returns it as a BufferedImage object
+     *
+     * @param webDriver WebDriver instance
+     * @param options AShotWrapper.Options instance; should specify DevicePixelRatio
+     * @return BufferedImage
+     */
+    public static BufferedImage takePageImage(WebDriver webDriver, Options options) {
+        AShot aShot = new AShot().
+                coordsProvider(new WebDriverCoordsProvider()).
+                shootingStrategy(
+                        ShootingStrategies.simple());  // No image processing is performed
+        return perform(webDriver, aShot, options);
+    }
+
     /**
      * write a BufferedImage object into a file in JPEG format with some compression applied
      *
@@ -234,9 +267,35 @@ public class AShotWrapper {
         //
         ImageOutputStream outputStream = new FileImageOutputStream(file);
         jpgWriter.setOutput(outputStream);
-        IIOImage outputImage = new IIOImage(image, null, null);
+        IIOImage outputImage =
+                new IIOImage(removeAlphaChannel(image), null, null);
         jpgWriter.write(null, outputImage, jpgWriteParam);
         jpgWriter.dispose();
+    }
+
+    public static void writePNG(BufferedImage image, File file) throws IOException {
+        try (FileOutputStream fos = new FileOutputStream(file)) {
+            ImageIO.write(image, "PNG", fos);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
+    }
+
+    private static BufferedImage removeAlphaChannel(BufferedImage img) {
+        if (!img.getColorModel().hasAlpha()) {
+            return img;
+        }
+        BufferedImage target = createImage(img.getWidth(), img.getHeight(), false);
+        Graphics2D g = target.createGraphics();
+        // g.setColor(new Color(color, false));
+        g.fillRect(0, 0, img.getWidth(), img.getHeight());
+        g.drawImage(img, 0, 0, null);
+        g.dispose();
+        return target;
+    }
+    private static BufferedImage createImage(int width, int height, boolean hasAlpha) {
+        return new BufferedImage(width, height, hasAlpha ? BufferedImage.TYPE_INT_ARGB : BufferedImage.TYPE_INT_RGB);
     }
 
     /**

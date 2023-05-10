@@ -1,7 +1,8 @@
-package com.kazurayam.ashotwrapper;
+package com.kazurayam.ashotwrapper.samples;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonParser;
+import com.kazurayam.ashotwrapper.AShotWrapper;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;

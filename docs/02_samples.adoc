@@ -1,0 +1,27 @@
+== Sample codes
+
+Here I will present a JUnit5 test class link:https://github.com/kazurayam/ashotwrapper/blob/develop/src/test/java/com/kazurayam/ashotwrapper/samples/AShotWrapperDemo.java[`com.kazurayam.ashotwrapper.samples.AShotWrapperDemo`] to demonstrate how to use the `com.kazurayam.ashotwrapper.AShotWrapper` class.
+
+The test class starts with the package statement, import statements, class declaration and some boilerplate methods; it is as follows:
+
+[quote]
+----
+include::https://github.com/kazurayam/ashotwrapper/blob/develop/src/test/java/com/kazurayam/ashotwrapper/study/AShotWrapperDemo.java[lines=1..66]
+----
+
+Now I will show each test methods that demonstrates how to use AShotWrapper, with resulting image files.
+
+=== Save a screenshot of the entire page in PNG
+
+[source]
+----
+https://github.com/kazurayam/ashotwrapper/blob/develop/src/test/java/com/kazurayam/ashotwrapper/demo/AShotWrapperDemo.java[lines=106..112]
+----
+
+image::https://kazurayam.github.com/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.AShotWrapperDemo/test_saveEntirePageImage.png[]
+
+=== Save a screenshot of the current viewport in PNG
+=== Save a screenshot of an element in the page in PNG
+=== Save a screenshot of the entire page in JPEG
+=== Save a screenshot of the current viewport in JPEG
+=== Save a screenshot of an element in the page in JPEG

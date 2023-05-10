@@ -1,4 +1,4 @@
-package com.kazurayam.ashotwrapper.demo;
+package com.kazurayam.ashotwrapper.samples;
 
 import com.kazurayam.ashotwrapper.AShotWrapper;
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -27,7 +27,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class AShotWrapperDemo {
 
     private static final Path outputDir =
-            Paths.get(".").resolve("build/tmp/testOutput")
+            Paths.get(".").resolve("docs/samples")
                     .resolve(AShotWrapperDemo.class.getName());
 
     private static WebDriver driver;
@@ -64,6 +64,8 @@ public class AShotWrapperDemo {
         float dpr = AShotWrapper.DevicePixelRatioResolver.resolveDPR(driver);
         aswOptions = new AShotWrapper.Options.Builder().devicePixelRatio(dpr).build();
     }
+
+
 
     @Test
     void test_takeElementImage() throws IOException {

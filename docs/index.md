@@ -1,172 +1,77 @@
-# Getting started with AShot with AshotWrapper
+-   <a href="#ashotwrapper" id="toc-ashotwrapper">AShotWrapper</a>
+    -   <a href="#what-is-this" id="toc-what-is-this">What is this?</a>
+        -   <a href="#whats" id="toc-whats">What’s ++</a>
+    -   <a href="#how-to-use-the-ashotwrapper" id="toc-how-to-use-the-ashotwrapper">How to use the <code>AShotWrapper</code></a>
+        -   <a href="#javadoc" id="toc-javadoc">Javadoc</a>
+    -   <a href="#sample-codes" id="toc-sample-codes">Sample codes</a>
+        -   <a href="#save-a-screenshot-of-the-entire-page-in-png" id="toc-save-a-screenshot-of-the-entire-page-in-png">Save a screenshot of the entire page in PNG</a>
+        -   <a href="#save-a-screenshot-of-the-current-viewport-in-png" id="toc-save-a-screenshot-of-the-current-viewport-in-png">Save a screenshot of the current viewport in PNG</a>
+        -   <a href="#save-a-screenshot-of-an-element-in-the-page-in-png" id="toc-save-a-screenshot-of-an-element-in-the-page-in-png">Save a screenshot of an element in the page in PNG</a>
+        -   <a href="#save-a-screenshot-of-the-entire-page-in-jpeg" id="toc-save-a-screenshot-of-the-entire-page-in-jpeg">Save a screenshot of the entire page in JPEG</a>
+        -   <a href="#save-a-screenshot-of-the-current-viewport-in-jpeg" id="toc-save-a-screenshot-of-the-current-viewport-in-jpeg">Save a screenshot of the current viewport in JPEG</a>
+        -   <a href="#save-a-screenshot-of-an-element-in-the-page-in-jpeg" id="toc-save-a-screenshot-of-an-element-in-the-page-in-jpeg">Save a screenshot of an element in the page in JPEG</a>
+    -   <a href="#study-how-to-reduce-the-screenshot-file-size" id="toc-study-how-to-reduce-the-screenshot-file-size">Study how to reduce the screenshot file size</a>
 
-A thin wrapper for the [AShot](https://github.com/pazone/ashot) library in java,
-which makes it easy to use the AShot in the [Visual Inspection in Katalon Studio](https://forum.katalon.com/t/visual-inspection-in-katalon-studio-reborn/57440) project.
+# AShotWrapper
+
+## What is this?
+
+The [`AShot`](https://github.com/pazone/ashot) is WebDriver screenshot library in Java. My `com.kazurayam.ashotwrapper.AShotWrapper` is a thin wrapper class of the [AShot](https://github.com/pazone/ashot) library.
+
+The `com.kazurayam.ashotwrapper.AShotWrapper` class simplifies using AShot in the [Visual Inspection in Katalon Studio](https://forum.katalon.com/t/visual-inspection-in-katalon-studio-reborn/57440) project.
+
+### What’s ++
+
+The `com.kazurayam.ashotwrapper.AShotWrapper` class provides some additional features that the AShot library doesn’t.
+
+1.  `AShotWrapper` optionally enables you to save screenshots in JPEG format while specifying compression quality. This is helpful in some cases to reduce the size of output files.
+
+2.  `AShotWrapper` optionally enables you to "censor" screenshots. You can paint the HTML elements in the screenshot with grey color. Effectively the painted HTML elements are ignored when you perform visual comparisons.
+
+## How to use the `AShotWrapper`
 
 The artifact is available at the Maven Central repository:
 
 -   <https://mvnrepository.com/artifact/com.kazurayam/ashotwrapper>
 
-## API
+You can use Gradle or Maven to use this library in your Java/Groovy project. Assuming you use Gradle, you just want to wraite your \`build.gradle:
 
-Javadoc is [here](./api/index.html)
+    implementation group: 'com.kazurayam', name: 'ashotwrapper', version: '0.2.0'
 
-## Example
+If you want to use this library in your Katalon Studio project, you want to download 2 jars into the `Drivers` folder of your Katalon Studio project.
 
-    package com.kazurayam.ashotwrapper.demo;
+-   [ashot](https://repo1.maven.org/maven2/ru/yandex/qatools/ashot/ashot/1.5.4/ashot-1.5.4.jar)
 
-    import com.kazurayam.ashotwrapper.AShotWrapper;
-    import io.github.bonigarcia.wdm.WebDriverManager;
-    import org.junit.jupiter.api.AfterEach;
-    import org.junit.jupiter.api.BeforeAll;
-    import org.junit.jupiter.api.BeforeEach;
-    import org.junit.jupiter.api.Test;
-    import org.openqa.selenium.By;
-    import org.openqa.selenium.Dimension;
-    import org.openqa.selenium.WebDriver;
-    import org.openqa.selenium.chrome.ChromeDriver;
-    import org.openqa.selenium.chrome.ChromeOptions;
+-   visit the page of [ashotwrapper](https://mvnrepository.com/artifact/com.kazurayam/ashotwrapper) in the Maven Central, find the latest version and click the `jar` link to download it.
 
-    import javax.imageio.ImageIO;
-    import java.awt.image.BufferedImage;
-    import java.io.File;
-    import java.io.IOException;
-    import java.nio.file.Files;
-    import java.nio.file.Path;
-    import java.nio.file.Paths;
-    import java.util.Comparator;
-    import java.util.concurrent.TimeUnit;
+### Javadoc
 
-    import static org.junit.jupiter.api.Assertions.*;
+Javadoc is [here](https://kazurayam.github.io/ashotwrapper/api/index.html)
 
-    public class AShotWrapperDemo {
+## Sample codes
 
-        private static final Path outputDir =
-                Paths.get(".").resolve("build/tmp/testOutput")
-                        .resolve(AShotWrapperDemo.class.getName());
+Here I will present a JUnit5 test class [`com.kazurayam.ashotwrapper.samples.AShotWrapperDemo`](https://github.com/kazurayam/ashotwrapper/blob/develop/src/test/java/com/kazurayam/ashotwrapper/samples/AShotWrapperDemo.java) to demonstrate how to use the `com.kazurayam.ashotwrapper.AShotWrapper` class.
 
-        private static WebDriver driver;
+The test class starts with the package statement, import statements, class declaration and some boilerplate methods; it is as follows:
 
-        private static final int timeout = 500;
+    link:https://github.com/kazurayam/ashotwrapper/blob/develop/src/test/java/com/kazurayam/ashotwrapper/study/AShotWrapperDemo.java[role=include]
 
-        private AShotWrapper.Options aswOptions = null;
+Now I will show each test methods that demonstrates how to use AShotWrapper, with resulting image files.
 
-        @BeforeAll
-        static void beforeAll() throws IOException {
-            Path dir = outputDir;
-            if (Files.exists(dir)) {
-                // delete the directory to clear out using Java8 API
-                Files.walk(dir)
-                        .sorted(Comparator.reverseOrder())
-                        .map(Path::toFile)
-                        .forEach(File::delete);
-            }
-            Files.createDirectories(dir);
-        }
+### Save a screenshot of the entire page in PNG
 
-        @BeforeEach
-        void beforeEach(){
-            WebDriverManager.chromedriver().setup();
-            ChromeOptions options = new ChromeOptions();
-            options.addArguments("--no-sandbox");
-            options.addArguments("--disable-dev-shm-usage");
-            options.addArguments("--headless");
-            driver = new ChromeDriver(options);
-            driver.manage().timeouts().implicitlyWait(timeout, TimeUnit.MILLISECONDS);
-            driver.manage().window().setSize(new Dimension(800, 800));
-            driver.navigate().to("http://example.com");
-            //
-            float dpr = AShotWrapper.DevicePixelRatioResolver.resolveDPR(driver);
-            aswOptions = new AShotWrapper.Options.Builder().devicePixelRatio(dpr).build();
-        }
+    https://github.com/kazurayam/ashotwrapper/blob/develop/src/test/java/com/kazurayam/ashotwrapper/demo/AShotWrapperDemo.java[lines=106..112]
 
-        @Test
-        void test_takeElementImage() throws IOException {
-            BufferedImage image = AShotWrapper.takeElementImage(driver,
-                    By.xpath("//body/div"),
-                    aswOptions);
-            assertNotNull(image);
-            File file = outputDir.resolve("test_takeWebElementImage.png").toFile();
-            ImageIO.write(image, "PNG", file);
-            assertTrue(file.exists());
-        }
+![test saveEntirePageImage](https://kazurayam.github.com/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.AShotWrapperDemo/test_saveEntirePageImage.png)
 
-        @Test
-        void test_takeEntirePageImage() throws IOException {
-            BufferedImage image = AShotWrapper.takeEntirePageImage(driver, aswOptions);
-            assertNotNull(image);
-            File file = outputDir.resolve("test_takeEntirePageImage.png").toFile();
-            ImageIO.write(image, "PNG", file);
-            assertTrue(file.exists());
-        }
+### Save a screenshot of the current viewport in PNG
 
-        @Test
-        void test_saveElementImage() throws IOException {
-            File file = outputDir.resolve("test_saveElementImage.png").toFile();
-            AShotWrapper.saveElementImage(driver,
-                    By.xpath("//body/div"), file);
-            assertTrue(file.exists());
-        }
+### Save a screenshot of an element in the page in PNG
 
-        @Test
-        void test_saveElementImageAsJpeg() throws IOException {
-            File file = outputDir.resolve("test_saveElementImageAsJpeg.jpg").toFile();
-            AShotWrapper.saveElementImageAsJpeg(driver,
-                    By.xpath("//body/div"), file, 0.7f);
-            assertTrue(file.exists());
-        }
+### Save a screenshot of the entire page in JPEG
 
-        @Test
-        void test_saveEntirePageImage() throws IOException {
-            File file = outputDir.resolve("test_saveEntirePageImage.png").toFile();
-            AShotWrapper.saveEntirePageImage(driver, file);
-            assertTrue(file.exists());
-        }
+### Save a screenshot of the current viewport in JPEG
 
-        @Test
-        void test_saveEntirePageImageAsJpeg() throws IOException {
-            File file = outputDir.resolve("test_saveEntirePageImageAsJpeg.jpg").toFile();
-            AShotWrapper.saveEntirePageImageAsJpeg(driver, file, 0.7f);
-            assertTrue(file.exists());
-        }
+### Save a screenshot of an element in the page in JPEG
 
-        @Test
-        void test_saveEntirePageImageWithCensor() throws IOException {
-            File file = outputDir.resolve("test_saveEntirePageImageWithCensor.png").toFile();
-            AShotWrapper.Options options =
-                    new AShotWrapper.Options.Builder()
-                            .addIgnoredElement(
-                                    By.xpath("//body/div/p[1]"))
-                            .build();
-            AShotWrapper.saveEntirePageImage(driver, options, file);
-            assertTrue(file.exists());
-        }
-
-
-
-        @AfterEach
-        void tearDown(){
-            if (driver != null) {
-                driver.quit();
-            }
-        }
-
-    }
-
-This will emit the following output:
-
-    $ tree build/tmp/testOutput
-    build/tmp/testOutput
-    └── com.kazurayam.ashotwrapper.AShotWrapperTest
-        ├── test_saveElementImage.png
-        ├── test_saveEntirePageImage.png
-        ├── test_takeEntirePageImage.png
-        └── test_takeWebElementImage.png
-
-    1 directory, 4 files
-
-# Motivation, etc.
-
-The AShot library provides a rich set of screenshot functionalities. I appreciate that.
-I only need just a part of them in the "Visual Inspection in Katalon Studio" project.
-So I made a wrapper to hide the details.
+## Study how to reduce the screenshot file size

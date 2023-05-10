@@ -1,0 +1,35 @@
+== What is this?
+
+The link:https://github.com/pazone/ashot[`AShot`] is WebDriver screenshot library in Java. My `com.kazurayam.ashotwrapper.AShotWrapper` is a thin wrapper class of the link:https://github.com/pazone/ashot[AShot] library.
+
+The `com.kazurayam.ashotwrapper.AShotWrapper` class simplifies using AShot in the https://forum.katalon.com/t/visual-inspection-in-katalon-studio-reborn/57440[Visual Inspection in Katalon Studio] project.
+
+=== What's ++
+
+The `com.kazurayam.ashotwrapper.AShotWrapper` class provides some additional features that the AShot library doesn't.
+
+1. `AShotWrapper` optionally enables you to save screenshots in JPEG format while specifying compression quality. This is helpful in some cases to reduce the size of output files.
+
+2. `AShotWrapper` optionally enables you to "censor" screenshots. You can paint the HTML elements in the screenshot with grey color. Effectively the painted HTML elements are ignored when you perform visual comparisons.
+
+== How to use the `AShotWrapper`
+
+The artifact is available at the Maven Central repository:
+
+- https://mvnrepository.com/artifact/com.kazurayam/ashotwrapper
+
+You can use Gradle or Maven to use this library in your Java/Groovy project. Assuming you use Gradle, you just want to wraite your `build.gradle:
+```
+implementation group: 'com.kazurayam', name: 'ashotwrapper', version: '0.2.0'
+```
+
+If you want to use this library in your Katalon Studio project, you want to download 2 jars into the `Drivers` folder of your Katalon Studio project.
+
+- link:https://repo1.maven.org/maven2/ru/yandex/qatools/ashot/ashot/1.5.4/ashot-1.5.4.jar[ashot]
+- visit the page of link:https://mvnrepository.com/artifact/com.kazurayam/ashotwrapper[ashotwrapper] in the Maven Central, find the latest version and click the `jar` link to download it.
+
+=== Javadoc
+
+Javadoc is link:https://kazurayam.github.io/ashotwrapper/api/index.html[here]
+
+

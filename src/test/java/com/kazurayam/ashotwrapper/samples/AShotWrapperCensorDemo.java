@@ -1,4 +1,4 @@
-package com.kazurayam.ashotwrapper.demo;
+package com.kazurayam.ashotwrapper.samples;
 
 import com.kazurayam.ashotwrapper.AShotWrapper;
 import io.github.bonigarcia.wdm.WebDriverManager;

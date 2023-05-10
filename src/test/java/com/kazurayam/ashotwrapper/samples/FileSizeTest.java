@@ -170,12 +170,20 @@ public class FileSizeTest {
         return urlParsed;
     }
     class Reporter {
-        private String url = null;
+        private URL url = null;
+        private String host = null;
         private String feature = null;
         private String description = null;
         private FileQualityPair png;
         private List<FileQualityPair> jpegs = new ArrayList<FileQualityPair>();
-        void setUrl(String url) { this.url = url; }
+        void setUrl(String url) {
+            try {
+                this.url = new URL(url);
+                this.host = this.url.getHost();
+            } catch (MalformedURLException e) {
+                throw new RuntimeException(e);
+            }
+        }
         void setFeature(String feature) { this.feature = feature; }
         void setDescription(String description) {this.description = description; }
         void setPNG(FileQualityPair png) {
@@ -223,7 +231,7 @@ public class FileSizeTest {
             sb.append("\n");
             // the row of PNG
             sb.append(String.format("| link:%s/%s/%s[%s]\n",
-                    urlPrefix, png.getFile().getName(),
+                    urlPrefix, host,
                     png.getFile().getName(), png.getFile().getName()));
             sb.append(String.format("| %1.1f\n", png.getQuality()));
             sb.append(String.format("| %,d\n", png.getFile().length()));
@@ -232,7 +240,7 @@ public class FileSizeTest {
             // the rows of JPEG
             jpegs.forEach(pair -> {
                 sb.append(String.format("| link:%s/%s/%s[%s]\n",
-                        urlPrefix, pair.getFile().getName(),
+                        urlPrefix, host,
                         pair.getFile().getName(), pair.getFile().getName()));
                 sb.append(String.format("| %1.1f\n", pair.getQuality()));
                 sb.append(String.format("| %,d\n", pair.getFile().length()));

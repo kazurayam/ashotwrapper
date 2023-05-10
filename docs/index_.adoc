@@ -1,5 +1,7 @@
 = AShotWrapper
 
+back to the link:https://github.com/kazurayam/ashotwrapper[repository]
+
 include::01_introduction.adoc[]
 
 include::02_samples.adoc[]
@@ -7,3 +9,4 @@ include::02_samples.adoc[]
 include::03_file_size_study.adoc[]
 
 include::04_censor.adoc[]
+

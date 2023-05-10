@@ -55,7 +55,7 @@ public class AShotWrapperCensorDemo {
         options.addArguments("--headless");
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(timeout, TimeUnit.MILLISECONDS);
-        driver.manage().window().setSize(new Dimension(1200, 800));
+        driver.manage().window().setSize(new Dimension(1200, 400));
         driver.navigate().to("https://site1.sbisec.co.jp/ETGate/");
         //
         float dpr = AShotWrapper.DevicePixelRatioResolver.resolveDPR(driver);

@@ -13,6 +13,8 @@ Now I will show each test methods that demonstrates how to use AShotWrapper, wit
 
 === Save a screenshot of the entire page in PNG
 
+The following code takes a screenshot of entire page view of the target URL, save the image in a PNG file.
+
 [source]
 ----
 include::../src/test/java/com/kazurayam/ashotwrapper/samples/AShotWrapperDemo.java[lines=106..112]
@@ -21,6 +23,8 @@ include::../src/test/java/com/kazurayam/ashotwrapper/samples/AShotWrapperDemo.ja
 image::https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.AShotWrapperDemo/test_saveEntirePageImage.png[]
 
 === Save a screenshot of the current viewport in PNG
+
+
 === Save a screenshot of an element in the page in PNG
 === Save a screenshot of the entire page in JPEG
 === Save a screenshot of the current viewport in JPEG

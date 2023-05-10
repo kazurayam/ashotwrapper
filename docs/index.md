@@ -85,12 +85,9 @@ The test class starts with the package statement, import statements, class decla
         private static final Path outputDir =
                 Paths.get(".").resolve("docs/samples")
                         .resolve(AShotWrapperDemo.class.getName());
-
         private static WebDriver driver;
-
         private static final int timeout = 500;
-
-        private AShotWrapper.Options aswOptions = null;
+        private AShotWrapper.Options options = null;
 
         @BeforeAll
         static void beforeAll() throws IOException {
@@ -114,23 +111,29 @@ The test class starts with the package statement, import statements, class decla
             options.addArguments("--headless");
             driver = new ChromeDriver(options);
             driver.manage().timeouts().implicitlyWait(timeout, TimeUnit.MILLISECONDS);
-            driver.manage().window().setSize(new Dimension(800, 800));
-            driver.navigate().to("http://example.com");
+            driver.manage().window().setSize(new Dimension(800, 400));
             //
             float dpr = AShotWrapper.DevicePixelRatioResolver.resolveDPR(driver);
-            aswOptions = new AShotWrapper.Options.Builder().devicePixelRatio(dpr).build();
+            this.options = new AShotWrapper.Options.Builder().devicePixelRatio(dpr).build();
         }
+
+        @AfterEach
+        void tearDown(){
+            if (driver != null) {
 
 Now I will show each test methods that demonstrates how to use AShotWrapper, with resulting image files.
 
 ### Save a screenshot of the entire page in PNG
 
-        @Test
-        void test_saveEntirePageImage() throws IOException {
-            File file = outputDir.resolve("test_saveEntirePageImage.png").toFile();
-            AShotWrapper.saveEntirePageImage(driver, file);
-            assertTrue(file.exists());
-        }
+The following code takes a screenshot of entire page view of the target URL, save the image in a PNG file.
+
+        void test_saveEntirePageImageWithCensor() throws IOException {
+            driver.navigate().to("http://example.com");
+            File file = outputDir.resolve("test_saveEntirePageImageWithCensor.png").toFile();
+            AShotWrapper.Options options =
+                    new AShotWrapper.Options.Builder()
+                            .addIgnoredElement(
+                                    By.xpath("//body/div/p[1]"))
 
 ![test saveEntirePageImage](https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.AShotWrapperDemo/test_saveEntirePageImage.png)
 

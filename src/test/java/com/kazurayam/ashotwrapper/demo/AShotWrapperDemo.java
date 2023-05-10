@@ -115,6 +115,19 @@ public class AShotWrapperDemo {
         assertTrue(file.exists());
     }
 
+    @Test
+    void test_saveEntirePageImageWithCensor() throws IOException {
+        File file = outputDir.resolve("test_saveEntirePageImageWithCensor.png").toFile();
+        AShotWrapper.Options options =
+                new AShotWrapper.Options.Builder()
+                        .addIgnoredElement(
+                                By.xpath("//body/div/p[1]"))
+                        .build();
+        AShotWrapper.saveEntirePageImage(driver, options, file);
+        assertTrue(file.exists());
+    }
+
+
 
     @AfterEach
     void tearDown(){

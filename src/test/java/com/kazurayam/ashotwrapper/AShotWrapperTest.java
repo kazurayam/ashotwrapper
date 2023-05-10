@@ -68,6 +68,18 @@ public class AShotWrapperTest {
     }
 
     @Test
+    void test_censor() throws IOException {
+        File file = outputDir.resolve("test_censor.png").toFile();
+        AShotWrapper.Options options =
+                new AShotWrapper.Options.Builder()
+                        .addIgnoredElement(
+                                By.xpath("//body/div/p[1]"))
+                        .build();
+        AShotWrapper.saveEntirePageImage(driver, options, file);
+        assertTrue(file.exists());
+    }
+
+    @Test
     void test_saveElementImage() throws IOException {
         File file = outputDir.resolve("test_saveElementImage.png").toFile();
         AShotWrapper.saveElementImage(driver,

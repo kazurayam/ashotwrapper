@@ -24,8 +24,28 @@ OUTPUT: link:https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.asho
 
 === Save a screenshot of the current viewport in PNG
 
+The following code takes a screenshot of current viewport in the browser (not the entire page screen shot), save the image in a PNG file.
+
+[source]
+----
+include::../src/test/java/com/kazurayam/ashotwrapper/samples/AShotWrapperDemo.java[lines=118..124]
+----
+
+OUTPUT: link:https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.AShotWrapperDemo/test_savePageImage.png[current viewport screenshot in PNG]
+
 
 === Save a screenshot of an element in the page in PNG
+
+You can select a single HTML element in the target web page, take the screenshot of the element, and save the image into a PNG file.
+
+[source]
+----
+include::../src/test/java/com/kazurayam/ashotwrapper/samples/AShotWrapperDemo.java[lines=127..137]
+----
+
+OUTPUT: link:https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.AShotWrapperDemo/test_saveElementImage.png[element screenshot in PNG]
+
+
 === Save a screenshot of the entire page in JPEG
 === Save a screenshot of the current viewport in JPEG
 === Save a screenshot of an element in the page in JPEG

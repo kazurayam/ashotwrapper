@@ -142,7 +142,35 @@ OUTPUT: [entire page screenshot in PNG](https://kazurayam.github.io/ashotwrapper
 
 ### Save a screenshot of the current viewport in PNG
 
+The following code takes a screenshot of current viewport in the browser (not the entire page screen shot), save the image in a PNG file.
+
+        @Test
+        void test_savePageImage() throws IOException {
+            driver.navigate().to("https://www.iana.org/domains/reserved");
+            File file = outputDir.resolve("test_savePageImage.png").toFile();
+            AShotWrapper.savePageImage(driver, file);
+            assertTrue(file.exists());
+        }
+
+OUTPUT: [current viewport screenshot in PNG](https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.AShotWrapperDemo/test_savePageImage.png)
+
 ### Save a screenshot of an element in the page in PNG
+
+You can select a single HTML element in the target web page, take the screenshot of the element, and save the image into a PNG file.
+
+        @Test
+        void test_takeElementImage() throws IOException {
+            driver.navigate().to("http://example.com");
+            BufferedImage image = AShotWrapper.takeElementImage(driver,
+                    By.xpath("//body/div"),
+                    options);
+            assertNotNull(image);
+            File file = outputDir.resolve("test_takeWebElementImage.png").toFile();
+            ImageIO.write(image, "PNG", file);
+            assertTrue(file.exists());
+        }
+
+OUTPUT: [element screenshot in PNG](https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.AShotWrapperDemo/test_saveElementImage.png)
 
 ### Save a screenshot of the entire page in JPEG
 

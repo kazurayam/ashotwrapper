@@ -13,7 +13,6 @@ repositories {
     mavenCentral()
 }
 
-
 sourceCompatibility = '1.8'
 targetCompatibility = '1.8'
 
@@ -21,28 +20,19 @@ def defaultEncoding = 'UTF-8'
 tasks.withType(AbstractCompile).each { it.options.encoding = defaultEncoding }
 tasks.withType(GroovyCompile).each {it.groovyOptions.encoding = defaultEncoding }
 
-ext {
-    seleniumjavaVersion = '3.141.59'
-}
+ext {}
 
 dependencies {
-
-    // https://mvnrepository.com/artifact/ru.yandex.qatools.ashot/ashot
     implementation libs.ashot
-
     implementation libs.seleniumjava
-
-    // https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager
-    testImplementation libs.webdrivermanager
-
-    // https://mvnrepository.com/artifact/org.json/json
-    testImplementation libs.gson
-
-    testImplementation libs.junit.jupiter.api
-    testRuntimeOnly libs.junit.jupiter.engine
-
     implementation libs.slf4j.api
+
+    testImplementation libs.webdrivermanager
+    testImplementation libs.gson
+    testImplementation libs.junit.jupiter.api
     testImplementation libs.slf4j.simple
+
+    testRuntimeOnly libs.junit.jupiter.engine
 }
 
 java {
@@ -56,6 +46,12 @@ test {
 
 artifacts {
     archives javadocJar, sourcesJar
+}
+
+javadoc {
+    options.showFromProtected()
+    failOnError = false
+    options.locale = "en_US"
 }
 
 publishing {

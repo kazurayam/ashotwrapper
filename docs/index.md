@@ -16,7 +16,6 @@ Javadoc is [here](./api/index.html)
     package com.kazurayam.ashotwrapper.demo;
 
     import com.kazurayam.ashotwrapper.AShotWrapper;
-    import com.kazurayam.ashotwrapper.DevicePixelRatioResolver;
     import io.github.bonigarcia.wdm.WebDriverManager;
     import org.junit.jupiter.api.AfterEach;
     import org.junit.jupiter.api.BeforeAll;
@@ -31,7 +30,6 @@ Javadoc is [here](./api/index.html)
     import javax.imageio.ImageIO;
     import java.awt.image.BufferedImage;
     import java.io.File;
-    import java.io.FileNotFoundException;
     import java.io.IOException;
     import java.nio.file.Files;
     import java.nio.file.Path;
@@ -78,43 +76,70 @@ Javadoc is [here](./api/index.html)
             driver.manage().window().setSize(new Dimension(800, 800));
             driver.navigate().to("http://example.com");
             //
-            float dpr = DevicePixelRatioResolver.resolveDPR(driver);
+            float dpr = AShotWrapper.DevicePixelRatioResolver.resolveDPR(driver);
             aswOptions = new AShotWrapper.Options.Builder().devicePixelRatio(dpr).build();
         }
 
         @Test
-        void test_takeWebElementImage() throws IOException {
+        void test_takeElementImage() throws IOException {
             BufferedImage image = AShotWrapper.takeElementImage(driver,
                     By.xpath("//body/div"),
                     aswOptions);
             assertNotNull(image);
-            File screenshotFile = outputDir.resolve("test_takeWebElementImage.png").toFile();
-            ImageIO.write(image, "PNG", screenshotFile);
-            assertTrue(screenshotFile.exists());
+            File file = outputDir.resolve("test_takeWebElementImage.png").toFile();
+            ImageIO.write(image, "PNG", file);
+            assertTrue(file.exists());
         }
 
         @Test
         void test_takeEntirePageImage() throws IOException {
             BufferedImage image = AShotWrapper.takeEntirePageImage(driver, aswOptions);
             assertNotNull(image);
-            File screenshotFile = outputDir.resolve("test_takeEntirePageImage.png").toFile();
-            ImageIO.write(image, "PNG", screenshotFile);
-            assertTrue(screenshotFile.exists());
+            File file = outputDir.resolve("test_takeEntirePageImage.png").toFile();
+            ImageIO.write(image, "PNG", file);
+            assertTrue(file.exists());
         }
 
         @Test
-        void test_saveElementImage() throws FileNotFoundException {
-            File screenshotFile = outputDir.resolve("test_saveElementImage.png").toFile();
+        void test_saveElementImage() throws IOException {
+            File file = outputDir.resolve("test_saveElementImage.png").toFile();
             AShotWrapper.saveElementImage(driver,
-                    By.xpath("//body/div"), screenshotFile);
-            assertTrue(screenshotFile.exists());
+                    By.xpath("//body/div"), file);
+            assertTrue(file.exists());
         }
 
         @Test
-        void test_saveEntirePageImage() {
-            File screenshotFile = outputDir.resolve("test_saveEntirePageImage.png").toFile();
-            AShotWrapper.saveEntirePageImage(driver, screenshotFile);
-            assertTrue(screenshotFile.exists());
+        void test_saveElementImageAsJpeg() throws IOException {
+            File file = outputDir.resolve("test_saveElementImageAsJpeg.jpg").toFile();
+            AShotWrapper.saveElementImageAsJpeg(driver,
+                    By.xpath("//body/div"), file, 0.7f);
+            assertTrue(file.exists());
+        }
+
+        @Test
+        void test_saveEntirePageImage() throws IOException {
+            File file = outputDir.resolve("test_saveEntirePageImage.png").toFile();
+            AShotWrapper.saveEntirePageImage(driver, file);
+            assertTrue(file.exists());
+        }
+
+        @Test
+        void test_saveEntirePageImageAsJpeg() throws IOException {
+            File file = outputDir.resolve("test_saveEntirePageImageAsJpeg.jpg").toFile();
+            AShotWrapper.saveEntirePageImageAsJpeg(driver, file, 0.7f);
+            assertTrue(file.exists());
+        }
+
+        @Test
+        void test_saveEntirePageImageWithCensor() throws IOException {
+            File file = outputDir.resolve("test_saveEntirePageImageWithCensor.png").toFile();
+            AShotWrapper.Options options =
+                    new AShotWrapper.Options.Builder()
+                            .addIgnoredElement(
+                                    By.xpath("//body/div/p[1]"))
+                            .build();
+            AShotWrapper.saveEntirePageImage(driver, options, file);
+            assertTrue(file.exists());
         }
 
 

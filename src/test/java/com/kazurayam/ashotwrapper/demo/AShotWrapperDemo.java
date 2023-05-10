@@ -66,40 +66,54 @@ public class AShotWrapperDemo {
     }
 
     @Test
-    void test_takeWebElementImage() throws IOException {
+    void test_takeElementImage() throws IOException {
         BufferedImage image = AShotWrapper.takeElementImage(driver,
                 By.xpath("//body/div"),
                 aswOptions);
         assertNotNull(image);
-        File screenshotFile = outputDir.resolve("test_takeWebElementImage.png").toFile();
-        ImageIO.write(image, "PNG", screenshotFile);
-        assertTrue(screenshotFile.exists());
+        File file = outputDir.resolve("test_takeWebElementImage.png").toFile();
+        ImageIO.write(image, "PNG", file);
+        assertTrue(file.exists());
     }
 
     @Test
     void test_takeEntirePageImage() throws IOException {
         BufferedImage image = AShotWrapper.takeEntirePageImage(driver, aswOptions);
         assertNotNull(image);
-        File screenshotFile = outputDir.resolve("test_takeEntirePageImage.png").toFile();
-        ImageIO.write(image, "PNG", screenshotFile);
-        assertTrue(screenshotFile.exists());
+        File file = outputDir.resolve("test_takeEntirePageImage.png").toFile();
+        ImageIO.write(image, "PNG", file);
+        assertTrue(file.exists());
     }
 
     @Test
     void test_saveElementImage() throws IOException {
-        File screenshotFile = outputDir.resolve("test_saveElementImage.png").toFile();
+        File file = outputDir.resolve("test_saveElementImage.png").toFile();
         AShotWrapper.saveElementImage(driver,
-                By.xpath("//body/div"), screenshotFile);
-        assertTrue(screenshotFile.exists());
+                By.xpath("//body/div"), file);
+        assertTrue(file.exists());
+    }
+
+    @Test
+    void test_saveElementImageAsJpeg() throws IOException {
+        File file = outputDir.resolve("test_saveElementImageAsJpeg.jpg").toFile();
+        AShotWrapper.saveElementImageAsJpeg(driver,
+                By.xpath("//body/div"), file, 0.7f);
+        assertTrue(file.exists());
     }
 
     @Test
     void test_saveEntirePageImage() throws IOException {
-        File screenshotFile = outputDir.resolve("test_saveEntirePageImage.png").toFile();
-        AShotWrapper.saveEntirePageImage(driver, screenshotFile);
-        assertTrue(screenshotFile.exists());
+        File file = outputDir.resolve("test_saveEntirePageImage.png").toFile();
+        AShotWrapper.saveEntirePageImage(driver, file);
+        assertTrue(file.exists());
     }
 
+    @Test
+    void test_saveEntirePageImageAsJpeg() throws IOException {
+        File file = outputDir.resolve("test_saveEntirePageImageAsJpeg.jpg").toFile();
+        AShotWrapper.saveEntirePageImageAsJpeg(driver, file, 0.7f);
+        assertTrue(file.exists());
+    }
 
 
     @AfterEach

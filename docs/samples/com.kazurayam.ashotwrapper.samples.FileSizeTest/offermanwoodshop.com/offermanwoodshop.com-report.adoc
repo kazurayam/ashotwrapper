@@ -1,4 +1,4 @@
-=== https://offermanwoodshop.com/
+- https://offermanwoodshop.com/
 
 A web page that is composed of lots of eye-catching photos
 
@@ -7,57 +7,57 @@ A web page that is composed of lots of eye-catching photos
 
 | link:https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/offermanwoodshop.com/offermanwoodshop.com.png[offermanwoodshop.com.png]
 | 1.0
-| 6,586,714
+| 6,652,854
 | 100%
 
 | link:https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/offermanwoodshop.com/offermanwoodshop.com-100.jpg[offermanwoodshop.com-100.jpg]
 | 1.0
-| 3,038,920
-| 47%
+| 3,059,146
+| 46%
 
 | link:https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/offermanwoodshop.com/offermanwoodshop.com-90.jpg[offermanwoodshop.com-90.jpg]
 | 0.9
-| 1,184,986
+| 1,191,439
 | 18%
 
 | link:https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/offermanwoodshop.com/offermanwoodshop.com-80.jpg[offermanwoodshop.com-80.jpg]
 | 0.8
-| 841,867
+| 846,047
 | 13%
 
 | link:https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/offermanwoodshop.com/offermanwoodshop.com-70.jpg[offermanwoodshop.com-70.jpg]
 | 0.7
-| 691,005
+| 693,909
 | 11%
 
 | link:https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/offermanwoodshop.com/offermanwoodshop.com-60.jpg[offermanwoodshop.com-60.jpg]
 | 0.6
-| 594,143
-| 10%
+| 596,583
+| 9%
 
 | link:https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/offermanwoodshop.com/offermanwoodshop.com-50.jpg[offermanwoodshop.com-50.jpg]
 | 0.5
-| 529,895
-| 9%
+| 532,033
+| 8%
 
 | link:https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/offermanwoodshop.com/offermanwoodshop.com-40.jpg[offermanwoodshop.com-40.jpg]
 | 0.4
-| 468,453
+| 470,349
 | 8%
 
 | link:https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/offermanwoodshop.com/offermanwoodshop.com-30.jpg[offermanwoodshop.com-30.jpg]
 | 0.3
-| 403,074
+| 404,585
 | 7%
 
 | link:https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/offermanwoodshop.com/offermanwoodshop.com-20.jpg[offermanwoodshop.com-20.jpg]
 | 0.2
-| 322,812
+| 323,878
 | 5%
 
 | link:https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/offermanwoodshop.com/offermanwoodshop.com-10.jpg[offermanwoodshop.com-10.jpg]
 | 0.1
-| 223,112
+| 223,401
 | 4%
 
 |===

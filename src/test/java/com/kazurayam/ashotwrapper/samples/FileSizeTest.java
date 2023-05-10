@@ -224,7 +224,7 @@ public class FileSizeTest {
         void reportInAsciidoc(File adoc) throws IOException {
             String urlPrefix = "https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest";
             StringBuilder sb = new StringBuilder();
-            sb.append("=== " + url + "\n\n");
+            sb.append("- " + url + "\n\n");
             sb.append(feature + "\n\n");
             sb.append("|===\n");
             sb.append("|File|Quality|Size(bytes)|% to PNG\n");

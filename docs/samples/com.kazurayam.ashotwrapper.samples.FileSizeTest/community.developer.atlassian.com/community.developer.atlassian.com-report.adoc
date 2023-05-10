@@ -1,4 +1,4 @@
-=== https://community.developer.atlassian.com/
+- https://community.developer.atlassian.com/
 
 Mixture of texts and small number of images. There are a lot of web sites on the net like this.
 
@@ -7,57 +7,57 @@ Mixture of texts and small number of images. There are a lot of web sites on the
 
 | link:https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/community.developer.atlassian.com/community.developer.atlassian.com.png[community.developer.atlassian.com.png]
 | 1.0
-| 579,610
+| 578,906
 | 100%
 
 | link:https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/community.developer.atlassian.com/community.developer.atlassian.com-100.jpg[community.developer.atlassian.com-100.jpg]
 | 1.0
-| 1,279,750
-| 220%
+| 1,288,437
+| 222%
 
 | link:https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/community.developer.atlassian.com/community.developer.atlassian.com-90.jpg[community.developer.atlassian.com-90.jpg]
 | 0.9
-| 557,709
-| 97%
+| 562,155
+| 98%
 
 | link:https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/community.developer.atlassian.com/community.developer.atlassian.com-80.jpg[community.developer.atlassian.com-80.jpg]
 | 0.8
-| 406,067
+| 409,833
 | 71%
 
 | link:https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/community.developer.atlassian.com/community.developer.atlassian.com-70.jpg[community.developer.atlassian.com-70.jpg]
 | 0.7
-| 338,643
+| 340,956
 | 59%
 
 | link:https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/community.developer.atlassian.com/community.developer.atlassian.com-60.jpg[community.developer.atlassian.com-60.jpg]
 | 0.6
-| 293,259
-| 51%
+| 295,286
+| 52%
 
 | link:https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/community.developer.atlassian.com/community.developer.atlassian.com-50.jpg[community.developer.atlassian.com-50.jpg]
 | 0.5
-| 262,596
+| 264,887
 | 46%
 
 | link:https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/community.developer.atlassian.com/community.developer.atlassian.com-40.jpg[community.developer.atlassian.com-40.jpg]
 | 0.4
-| 234,855
+| 236,907
 | 41%
 
 | link:https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/community.developer.atlassian.com/community.developer.atlassian.com-30.jpg[community.developer.atlassian.com-30.jpg]
 | 0.3
-| 204,726
+| 206,319
 | 36%
 
 | link:https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/community.developer.atlassian.com/community.developer.atlassian.com-20.jpg[community.developer.atlassian.com-20.jpg]
 | 0.2
-| 168,239
+| 169,591
 | 30%
 
 | link:https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/community.developer.atlassian.com/community.developer.atlassian.com-10.jpg[community.developer.atlassian.com-10.jpg]
 | 0.1
-| 120,827
+| 121,321
 | 21%
 
 |===

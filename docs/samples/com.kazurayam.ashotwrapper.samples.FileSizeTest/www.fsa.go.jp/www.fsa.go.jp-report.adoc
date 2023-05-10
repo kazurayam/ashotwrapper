@@ -1,4 +1,4 @@
-=== https://www.fsa.go.jp/kouhou/index.html
+- https://www.fsa.go.jp/kouhou/index.html
 
 Text-rich page without eye-catching photos
 

@@ -10,11 +10,8 @@
         -   <a href="#save-a-screenshot-of-the-entire-page-in-jpeg" id="toc-save-a-screenshot-of-the-entire-page-in-jpeg">Save a screenshot of the entire page in JPEG</a>
     -   <a href="#study-how-to-reduce-file-size-of-screenshots-using-jpeg-format" id="toc-study-how-to-reduce-file-size-of-screenshots-using-jpeg-format">Study how to reduce file size of screenshots using JPEG format</a>
         -   <a href="#web-page-with-lots-of-photos" id="toc-web-page-with-lots-of-photos">Web page with lots of photos</a>
-        -   <a href="#httpsoffermanwoodshop-com" id="toc-httpsoffermanwoodshop-com">https://offermanwoodshop.com/</a>
         -   <a href="#text-only-web-page" id="toc-text-only-web-page">Text-only web page</a>
-        -   <a href="#httpswww-fsa-go-jpkouhouindex-html" id="toc-httpswww-fsa-go-jpkouhouindex-html">https://www.fsa.go.jp/kouhou/index.html</a>
         -   <a href="#ordinary-web-page-with-text-and-a-few-images" id="toc-ordinary-web-page-with-text-and-a-few-images">Ordinary web page with text and a few images</a>
-        -   <a href="#httpscommunity-developer-atlassian-com" id="toc-httpscommunity-developer-atlassian-com">https://community.developer.atlassian.com/</a>
 
 # AShotWrapper
 
@@ -238,7 +235,7 @@ In order to answer to the question, I have created a JUnit5 test, named [FileSiz
 
 ### Web page with lots of photos
 
-### <https://offermanwoodshop.com/>
+-   <https://offermanwoodshop.com/>
 
 A web page that is composed of lots of eye-catching photos
 
@@ -261,67 +258,67 @@ A web page that is composed of lots of eye-catching photos
 <tr class="odd">
 <td style="text-align: left;"><p><a href="https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/offermanwoodshop.com/offermanwoodshop.com.png">offermanwoodshop.com.png</a></p></td>
 <td style="text-align: left;"><p>1.0</p></td>
-<td style="text-align: left;"><p>6,586,714</p></td>
+<td style="text-align: left;"><p>6,652,854</p></td>
 <td style="text-align: left;"><p>100%</p></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><p><a href="https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/offermanwoodshop.com/offermanwoodshop.com-100.jpg">offermanwoodshop.com-100.jpg</a></p></td>
 <td style="text-align: left;"><p>1.0</p></td>
-<td style="text-align: left;"><p>3,038,920</p></td>
-<td style="text-align: left;"><p>47%</p></td>
+<td style="text-align: left;"><p>3,059,146</p></td>
+<td style="text-align: left;"><p>46%</p></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><p><a href="https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/offermanwoodshop.com/offermanwoodshop.com-90.jpg">offermanwoodshop.com-90.jpg</a></p></td>
 <td style="text-align: left;"><p>0.9</p></td>
-<td style="text-align: left;"><p>1,184,986</p></td>
+<td style="text-align: left;"><p>1,191,439</p></td>
 <td style="text-align: left;"><p>18%</p></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><p><a href="https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/offermanwoodshop.com/offermanwoodshop.com-80.jpg">offermanwoodshop.com-80.jpg</a></p></td>
 <td style="text-align: left;"><p>0.8</p></td>
-<td style="text-align: left;"><p>841,867</p></td>
+<td style="text-align: left;"><p>846,047</p></td>
 <td style="text-align: left;"><p>13%</p></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><p><a href="https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/offermanwoodshop.com/offermanwoodshop.com-70.jpg">offermanwoodshop.com-70.jpg</a></p></td>
 <td style="text-align: left;"><p>0.7</p></td>
-<td style="text-align: left;"><p>691,005</p></td>
+<td style="text-align: left;"><p>693,909</p></td>
 <td style="text-align: left;"><p>11%</p></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><p><a href="https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/offermanwoodshop.com/offermanwoodshop.com-60.jpg">offermanwoodshop.com-60.jpg</a></p></td>
 <td style="text-align: left;"><p>0.6</p></td>
-<td style="text-align: left;"><p>594,143</p></td>
-<td style="text-align: left;"><p>10%</p></td>
+<td style="text-align: left;"><p>596,583</p></td>
+<td style="text-align: left;"><p>9%</p></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><p><a href="https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/offermanwoodshop.com/offermanwoodshop.com-50.jpg">offermanwoodshop.com-50.jpg</a></p></td>
 <td style="text-align: left;"><p>0.5</p></td>
-<td style="text-align: left;"><p>529,895</p></td>
-<td style="text-align: left;"><p>9%</p></td>
+<td style="text-align: left;"><p>532,033</p></td>
+<td style="text-align: left;"><p>8%</p></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><p><a href="https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/offermanwoodshop.com/offermanwoodshop.com-40.jpg">offermanwoodshop.com-40.jpg</a></p></td>
 <td style="text-align: left;"><p>0.4</p></td>
-<td style="text-align: left;"><p>468,453</p></td>
+<td style="text-align: left;"><p>470,349</p></td>
 <td style="text-align: left;"><p>8%</p></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><p><a href="https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/offermanwoodshop.com/offermanwoodshop.com-30.jpg">offermanwoodshop.com-30.jpg</a></p></td>
 <td style="text-align: left;"><p>0.3</p></td>
-<td style="text-align: left;"><p>403,074</p></td>
+<td style="text-align: left;"><p>404,585</p></td>
 <td style="text-align: left;"><p>7%</p></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><p><a href="https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/offermanwoodshop.com/offermanwoodshop.com-20.jpg">offermanwoodshop.com-20.jpg</a></p></td>
 <td style="text-align: left;"><p>0.2</p></td>
-<td style="text-align: left;"><p>322,812</p></td>
+<td style="text-align: left;"><p>323,878</p></td>
 <td style="text-align: left;"><p>5%</p></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><p><a href="https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/offermanwoodshop.com/offermanwoodshop.com-10.jpg">offermanwoodshop.com-10.jpg</a></p></td>
 <td style="text-align: left;"><p>0.1</p></td>
-<td style="text-align: left;"><p>223,112</p></td>
+<td style="text-align: left;"><p>223,401</p></td>
 <td style="text-align: left;"><p>4%</p></td>
 </tr>
 </tbody>
@@ -331,7 +328,7 @@ Photo-rich page results in the screenshots of very large size. PNG is surprising
 
 ### Text-only web page
 
-### <https://www.fsa.go.jp/kouhou/index.html>
+-   <https://www.fsa.go.jp/kouhou/index.html>
 
 Text-rich page without eye-catching photos
 
@@ -424,7 +421,7 @@ Text-rich page results in the screenshots of small size. PNG is smaller than JPE
 
 ### Ordinary web page with text and a few images
 
-### <https://community.developer.atlassian.com/>
+-   <https://community.developer.atlassian.com/>
 
 Mixture of texts and small number of images. There are a lot of web sites on the net like this.
 
@@ -447,67 +444,67 @@ Mixture of texts and small number of images. There are a lot of web sites on the
 <tr class="odd">
 <td style="text-align: left;"><p><a href="https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/community.developer.atlassian.com/community.developer.atlassian.com.png">community.developer.atlassian.com.png</a></p></td>
 <td style="text-align: left;"><p>1.0</p></td>
-<td style="text-align: left;"><p>579,610</p></td>
+<td style="text-align: left;"><p>578,906</p></td>
 <td style="text-align: left;"><p>100%</p></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><p><a href="https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/community.developer.atlassian.com/community.developer.atlassian.com-100.jpg">community.developer.atlassian.com-100.jpg</a></p></td>
 <td style="text-align: left;"><p>1.0</p></td>
-<td style="text-align: left;"><p>1,279,750</p></td>
-<td style="text-align: left;"><p>220%</p></td>
+<td style="text-align: left;"><p>1,288,437</p></td>
+<td style="text-align: left;"><p>222%</p></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><p><a href="https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/community.developer.atlassian.com/community.developer.atlassian.com-90.jpg">community.developer.atlassian.com-90.jpg</a></p></td>
 <td style="text-align: left;"><p>0.9</p></td>
-<td style="text-align: left;"><p>557,709</p></td>
-<td style="text-align: left;"><p>97%</p></td>
+<td style="text-align: left;"><p>562,155</p></td>
+<td style="text-align: left;"><p>98%</p></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><p><a href="https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/community.developer.atlassian.com/community.developer.atlassian.com-80.jpg">community.developer.atlassian.com-80.jpg</a></p></td>
 <td style="text-align: left;"><p>0.8</p></td>
-<td style="text-align: left;"><p>406,067</p></td>
+<td style="text-align: left;"><p>409,833</p></td>
 <td style="text-align: left;"><p>71%</p></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><p><a href="https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/community.developer.atlassian.com/community.developer.atlassian.com-70.jpg">community.developer.atlassian.com-70.jpg</a></p></td>
 <td style="text-align: left;"><p>0.7</p></td>
-<td style="text-align: left;"><p>338,643</p></td>
+<td style="text-align: left;"><p>340,956</p></td>
 <td style="text-align: left;"><p>59%</p></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><p><a href="https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/community.developer.atlassian.com/community.developer.atlassian.com-60.jpg">community.developer.atlassian.com-60.jpg</a></p></td>
 <td style="text-align: left;"><p>0.6</p></td>
-<td style="text-align: left;"><p>293,259</p></td>
-<td style="text-align: left;"><p>51%</p></td>
+<td style="text-align: left;"><p>295,286</p></td>
+<td style="text-align: left;"><p>52%</p></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><p><a href="https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/community.developer.atlassian.com/community.developer.atlassian.com-50.jpg">community.developer.atlassian.com-50.jpg</a></p></td>
 <td style="text-align: left;"><p>0.5</p></td>
-<td style="text-align: left;"><p>262,596</p></td>
+<td style="text-align: left;"><p>264,887</p></td>
 <td style="text-align: left;"><p>46%</p></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><p><a href="https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/community.developer.atlassian.com/community.developer.atlassian.com-40.jpg">community.developer.atlassian.com-40.jpg</a></p></td>
 <td style="text-align: left;"><p>0.4</p></td>
-<td style="text-align: left;"><p>234,855</p></td>
+<td style="text-align: left;"><p>236,907</p></td>
 <td style="text-align: left;"><p>41%</p></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><p><a href="https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/community.developer.atlassian.com/community.developer.atlassian.com-30.jpg">community.developer.atlassian.com-30.jpg</a></p></td>
 <td style="text-align: left;"><p>0.3</p></td>
-<td style="text-align: left;"><p>204,726</p></td>
+<td style="text-align: left;"><p>206,319</p></td>
 <td style="text-align: left;"><p>36%</p></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><p><a href="https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/community.developer.atlassian.com/community.developer.atlassian.com-20.jpg">community.developer.atlassian.com-20.jpg</a></p></td>
 <td style="text-align: left;"><p>0.2</p></td>
-<td style="text-align: left;"><p>168,239</p></td>
+<td style="text-align: left;"><p>169,591</p></td>
 <td style="text-align: left;"><p>30%</p></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><p><a href="https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/community.developer.atlassian.com/community.developer.atlassian.com-10.jpg">community.developer.atlassian.com-10.jpg</a></p></td>
 <td style="text-align: left;"><p>0.1</p></td>
-<td style="text-align: left;"><p>120,827</p></td>
+<td style="text-align: left;"><p>121,321</p></td>
 <td style="text-align: left;"><p>21%</p></td>
 </tr>
 </tbody>

@@ -7,59 +7,59 @@ A web page that is composed of lots of eye-catching photos
 
 | link:https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/offermanwoodshop.com/offermanwoodshop.com.png[offermanwoodshop.com.png]
 | 1.0
-| 6,652,854
+| 6,588,545
 | 100%
 
 | link:https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/offermanwoodshop.com/offermanwoodshop.com-100.jpg[offermanwoodshop.com-100.jpg]
 | 1.0
-| 3,059,146
-| 46%
+| 3,041,837
+| 47%
 
 | link:https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/offermanwoodshop.com/offermanwoodshop.com-90.jpg[offermanwoodshop.com-90.jpg]
 | 0.9
-| 1,191,439
-| 18%
+| 1,187,056
+| 19%
 
 | link:https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/offermanwoodshop.com/offermanwoodshop.com-80.jpg[offermanwoodshop.com-80.jpg]
 | 0.8
-| 846,047
+| 843,636
 | 13%
 
 | link:https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/offermanwoodshop.com/offermanwoodshop.com-70.jpg[offermanwoodshop.com-70.jpg]
 | 0.7
-| 693,909
+| 692,684
 | 11%
 
 | link:https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/offermanwoodshop.com/offermanwoodshop.com-60.jpg[offermanwoodshop.com-60.jpg]
 | 0.6
-| 596,583
-| 9%
+| 595,758
+| 10%
 
 | link:https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/offermanwoodshop.com/offermanwoodshop.com-50.jpg[offermanwoodshop.com-50.jpg]
 | 0.5
-| 532,033
-| 8%
+| 531,487
+| 9%
 
 | link:https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/offermanwoodshop.com/offermanwoodshop.com-40.jpg[offermanwoodshop.com-40.jpg]
 | 0.4
-| 470,349
+| 469,988
 | 8%
 
 | link:https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/offermanwoodshop.com/offermanwoodshop.com-30.jpg[offermanwoodshop.com-30.jpg]
 | 0.3
-| 404,585
+| 404,645
 | 7%
 
 | link:https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/offermanwoodshop.com/offermanwoodshop.com-20.jpg[offermanwoodshop.com-20.jpg]
 | 0.2
-| 323,878
+| 324,059
 | 5%
 
 | link:https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.FileSizeTest/offermanwoodshop.com/offermanwoodshop.com-10.jpg[offermanwoodshop.com-10.jpg]
 | 0.1
-| 223,401
+| 223,726
 | 4%
 
 |===
-Photo-rich page results in the screenshots of very large size. PNG is surprisingly lager than JPEG of the compression quality 1.0. PNG is not suitable for photo-rich pages.
+Photo-rich page results in the screenshots of very large size. PNG is surprisingly lager than JPEG of the compression quality 1.0. PNG is not suitable for photo-rich pages. You should save the screenshots of photo-rich pages in JPEG, seriously.
 

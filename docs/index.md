@@ -52,7 +52,7 @@ Javadoc is [here](https://kazurayam.github.io/ashotwrapper/api/index.html)
 
 Here I will present a JUnit5 test class [`com.kazurayam.ashotwrapper.samples.AShotWrapperDemo`](https://github.com/kazurayam/ashotwrapper/blob/develop/src/test/java/com/kazurayam/ashotwrapper/samples/AShotWrapperDemo.java) to demonstrate how to use the `AShotWrapper` class.
 
-The test class starts with the package statement, import statements, class declaration and some boilerplate methods; it is as follows:
+The test class starts with the package statement, import statements, class declaration and some common boilerplate methods; it is as follows:
 
     package com.kazurayam.ashotwrapper.samples;
 
@@ -120,6 +120,9 @@ The test class starts with the package statement, import statements, class decla
         @AfterEach
         void tearDown(){
             if (driver != null) {
+                driver.quit();
+            }
+        }
 
 Now I will show each test methods that demonstrates how to use AShotWrapper, with resulting image files.
 
@@ -127,15 +130,15 @@ Now I will show each test methods that demonstrates how to use AShotWrapper, wit
 
 The following code takes a screenshot of entire page view of the target URL, save the image in a PNG file.
 
-        void test_saveEntirePageImageWithCensor() throws IOException {
-            driver.navigate().to("http://example.com");
-            File file = outputDir.resolve("test_saveEntirePageImageWithCensor.png").toFile();
-            AShotWrapper.Options options =
-                    new AShotWrapper.Options.Builder()
-                            .addIgnoredElement(
-                                    By.xpath("//body/div/p[1]"))
+        @Test
+        void test_saveEntirePageImage() throws IOException {
+            driver.navigate().to("https://www.iana.org/domains/reserved");
+            File file = outputDir.resolve("test_saveEntirePageImage.png").toFile();
+            AShotWrapper.saveEntirePageImage(driver, file);
+            assertTrue(file.exists());
+        }
 
-![test saveEntirePageImage](https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.AShotWrapperDemo/test_saveEntirePageImage.png)
+OUTPUT: [entire page screenshot in PNG](https://kazurayam.github.io/ashotwrapper/samples/com.kazurayam.ashotwrapper.samples.AShotWrapperDemo/test_saveEntirePageImage.png)
 
 ### Save a screenshot of the current viewport in PNG
 

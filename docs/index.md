@@ -128,7 +128,7 @@ Now I will show each test methods that demonstrates how to use AShotWrapper, wit
 
 ### Save a screenshot of the entire page in PNG
 
-The following code takes a screenshot of entire page view of the target URL, save the image in a PNG file.
+The following code takes a screenshot of entire page view of the [target URL](https://www.iana.org/domains/reserved), save the image in a PNG file.
 
         @Test
         void test_saveEntirePageImage() throws IOException {
@@ -142,7 +142,7 @@ OUTPUT: [entire page screenshot in PNG](https://kazurayam.github.io/ashotwrapper
 
 ### Save a screenshot of the current viewport in PNG
 
-The following code takes a screenshot of current viewport in the browser (not the entire page screen shot), save the image in a PNG file.
+The following code takes a screenshot of current viewport of the [target web page](https://www.iana.org/domains/reserved) in the browser (not the entire page screenshot), save the image in a PNG file.
 
         @Test
         void test_savePageImage() throws IOException {
@@ -156,7 +156,7 @@ OUTPUT: [current viewport screenshot in PNG](https://kazurayam.github.io/ashotwr
 
 ### Save a screenshot of an element in the page in PNG
 
-You can select a single HTML element in the target web page, take the screenshot of the element, and save the image into a PNG file.
+You can select a single HTML element in the [target web page](http://example.com/), take the screenshot of the element, and save the image into a PNG file.
 
         @Test
         void test_takeElementImage() throws IOException {

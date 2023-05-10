@@ -1,7 +1,6 @@
 package com.kazurayam.ashotwrapper.demo;
 
 import com.kazurayam.ashotwrapper.AShotWrapper;
-import com.kazurayam.ashotwrapper.DevicePixelRatioResolver;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -16,7 +15,6 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -63,7 +61,7 @@ public class AShotWrapperDemo {
         driver.manage().window().setSize(new Dimension(800, 800));
         driver.navigate().to("http://example.com");
         //
-        float dpr = DevicePixelRatioResolver.resolveDPR(driver);
+        float dpr = AShotWrapper.DevicePixelRatioResolver.resolveDPR(driver);
         aswOptions = new AShotWrapper.Options.Builder().devicePixelRatio(dpr).build();
     }
 

@@ -1,6 +1,7 @@
 package com.kazurayam.ashotwrapper;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import ru.yandex.qatools.ashot.AShot;
@@ -416,6 +417,17 @@ public class AShotWrapper {
             sb.append("}");
             sb.append("}");
             return sb.toString();
+        }
+    }
+
+    public static class DevicePixelRatioResolver {
+
+        private DevicePixelRatioResolver() {}
+
+        public static float resolveDPR(WebDriver driver) {
+            JavascriptExecutor js = (JavascriptExecutor)driver;
+            Long value = (Long)js.executeScript("return window.devicePixelRatio;");
+            return (float)value;
         }
     }
 }

@@ -31,7 +31,7 @@ public class DevicePixelRatioResolverTest {
     @Test
     void test_smoke() {
         driver.navigate().to("https://example.com/");
-        float dpr = DevicePixelRatioResolver.resolveDPR(driver);
+        float dpr = AShotWrapper.DevicePixelRatioResolver.resolveDPR(driver);
         assertEquals(dpr, 2.0f);
     }
 }

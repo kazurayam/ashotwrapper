@@ -80,6 +80,15 @@ public class AShotWrapperTest {
     }
 
     @Test
+    void test_resize() throws IOException {
+        File file = outputDir.resolve("test_resize.png").toFile();
+        BufferedImage source = AShotWrapper.takePageImage(driver);
+        BufferedImage resized = AShotWrapper.resize(source, 400);
+        AShotWrapper.writePNG(resized, file);
+    }
+
+
+    @Test
     void test_saveElementImage() throws IOException {
         File file = outputDir.resolve("test_saveElementImage.png").toFile();
         AShotWrapper.saveElementImage(driver,

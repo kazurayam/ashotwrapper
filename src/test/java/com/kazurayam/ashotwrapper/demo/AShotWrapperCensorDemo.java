@@ -77,6 +77,8 @@ public class AShotWrapperCensorDemo {
                                 By.cssSelector("div.md-l-utl-mt10"))
                         .build();
         AShotWrapper.savePageImage(driver, options, file);
+        //AShotWrapper.saveEntirePageImage(driver, options, file);
+
         assertTrue(file.exists());
     }
 }

@@ -51,11 +51,13 @@ public class AShotWrapper {
 
 
     /**
-     * Resize the source image to have the given width while retaining the aspect ratio unchanged
+     * Resize the source image to have the given width while retaining
+     * the aspect ratio unchanged
      *
-     * @param sourceImage raw Screenshot image
-     * @param targetWidth resize the sourceImage to this width, retaining the aspect ratio unchanged
-     * @return resized image
+     * @param sourceImage the source image as a BufferedImage object
+     * @param targetWidth resize the sourceImage to this width,
+     *                    retaining the aspect ratio (=width/height) unchanged
+     * @return a BufferedImage object resized
      */
     protected static BufferedImage resize(BufferedImage sourceImage, int targetWidth) {
         if (targetWidth < 0) return sourceImage;
@@ -244,10 +246,11 @@ public class AShotWrapper {
      * @return BufferedImage
      */
     public static BufferedImage takePageImage(WebDriver webDriver, Options options) {
+        float dpr = options.getDevicePixelRatio();
         AShot aShot = new AShot().
                 coordsProvider(new WebDriverCoordsProvider()).
                 shootingStrategy(
-                        ShootingStrategies.simple());  // No image processing is performed
+                        ShootingStrategies.scaling(dpr));  // No image processing is performed
         return perform(webDriver, aShot, options);
     }
 

@@ -101,6 +101,7 @@ publishing {
 signing {
     sign publishing.publications.mavenJava
 }
+
 // I do not want to sign the SNAPSHOT
 tasks.withType(Sign) {
     onlyIf { isReleaseVersion }

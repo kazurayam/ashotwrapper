@@ -562,4 +562,4 @@ You can optionally gray paint the square regions of the selected HTML elements i
 
 Censoring example
 
-Please find the clock area is painted grey. You can do image comparison of 2 screenshots both of which are censored. Possibly, the painted area would no longer cause significant difference.
+Please find the clock area is painted gray. if you do image comparison of 2 screenshots both of which are censored, the painted area would be the same. It would no longer cause any significant image difference.

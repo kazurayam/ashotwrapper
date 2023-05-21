@@ -515,11 +515,11 @@ PNG has smaller file size than JPEG of the compression quality 1.0. The JPEG of 
 
 ## How to ignore \`&lt;div&gt;\`s that keep on changing its view
 
-Many websites contain `<div>` elements that display some commercial advertisements, that keep on changing dynamically. These dynamic HTML elements disturbs visual comparison of 2 screenshots taken at different timings. These dynamic \`&lt;div&gt;\`s will be visually different; which results some % of image difference. However, I am not interested in the image difference caused by the advertisements or clock. Rather, I want to ignore those dynamic HTML elements in image comparison. How can I do it?
+Many websites contain `<div>` elements that display commercial advertisements that keep on changing dynamically everytime inquired. These dynamic HTML elements disturb visual comparison of 2 screenshots taken at different timings. These dynamic \`&lt;div&gt;\`s will result significant % of image difference. However, I am not interested in the image difference caused by the advertisements. Therefore, I want to ignore those dynamic HTML elements for more accurate image comparison. How can I do it?
 
-You can optionally paint the square regions of selected HTML elements in the screenshot images in grey color. I would call it : **Censoring** (検閲、塗りつぶし). See an example of **censored** page image:
+You can optionally gray paint the square regions of the selected HTML elements in the screenshot images. I would call it : **Censoring** (検閲、塗りつぶし). See an example of **censored** page image as follows:
 
--   [`com.kazurayam.ashotwrapper.samples.AShotWrapperCencorDemo`](https://github.com/kazurayam/ashotwrapper/blob/develop/src/test/java/com/kazurayam/ashotwrapper/samples/AShotWrapperCensorDemo.java)
+-   [`com.kazurayam.ashotwrapper.samples.AShotWrapperCensorDemo`](https://github.com/kazurayam/ashotwrapper/blob/develop/src/test/java/com/kazurayam/ashotwrapper/samples/AShotWrapperCensorDemo.java)
 
 <!-- -->
 

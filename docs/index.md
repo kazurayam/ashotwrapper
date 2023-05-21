@@ -515,7 +515,7 @@ PNG has smaller file size than JPEG of the compression quality 1.0. The JPEG of 
 
 ## How to ignore \`&lt;div&gt;\`s that keep on changing its view
 
-Many websites contain `<div>` elements that display some commercial advertisements, that keep on changing dynamically. These dynamic HTML elements disturbs visual comparison of 2 screenshots taken at different timings. These dynamic \`&lt;div&gt;\`s will highly likely to be different; which result some % of image-diff. However, I am not interested in the image-difference caused by the advertisements. Rather, I want to ignore those dynamic HTML elements in image comparison. How can I do it?
+Many websites contain `<div>` elements that display some commercial advertisements, that keep on changing dynamically. These dynamic HTML elements disturbs visual comparison of 2 screenshots taken at different timings. These dynamic \`&lt;div&gt;\`s will be visually different; which results some % of image difference. However, I am not interested in the image difference caused by the advertisements or clock. Rather, I want to ignore those dynamic HTML elements in image comparison. How can I do it?
 
 You can optionally paint the square regions of selected HTML elements in the screenshot images in grey color. I would call it : **Censoring** (検閲、塗りつぶし). See an example of **censored** page image:
 
@@ -541,4 +541,4 @@ You can optionally paint the square regions of selected HTML elements in the scr
 
 Censoring example
 
-Please find the clock area is painted grey. You can do image comparison of 2 screenshots both of which are censored. Possibly, the painted area would not cause significant difference anymore.
+Please find the clock area is painted grey. You can do image comparison of 2 screenshots both of which are censored. Possibly, the painted area would no longer cause significant difference.

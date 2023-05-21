@@ -1,19 +1,17 @@
 plugins {
-    id 'java'
-    id 'idea'
+    id 'java-library'
     id 'maven-publish'
     id 'signing'
 }
 
 group 'com.kazurayam'
-version '0.1.1'
+version '0.2.1'
 
 ext.isReleaseVersion = ! version.endsWith("SNAPSHOT")
 
 repositories {
     mavenCentral()
 }
-
 
 sourceCompatibility = '1.8'
 targetCompatibility = '1.8'
@@ -22,25 +20,19 @@ def defaultEncoding = 'UTF-8'
 tasks.withType(AbstractCompile).each { it.options.encoding = defaultEncoding }
 tasks.withType(GroovyCompile).each {it.groovyOptions.encoding = defaultEncoding }
 
-ext {
-    seleniumjavaVersion = '3.141.59'
-    webdrivermanager = '4.4.3'
-    ashotVersion = '1.5.4'
-    junitjupiterVersion = '5.7.0'
-}
+ext {}
 
 dependencies {
+    implementation libs.ashot
+    implementation libs.seleniumjava
+    implementation libs.slf4j.api
 
-    // https://mvnrepository.com/artifact/ru.yandex.qatools.ashot/ashot
-    implementation group: 'ru.yandex.qatools.ashot', name: 'ashot', version: "${ashotVersion}"
+    testImplementation libs.webdrivermanager
+    testImplementation libs.gson
+    testImplementation libs.junit.jupiter.api
+    testImplementation libs.slf4j.simple
 
-    implementation "org.seleniumhq.selenium:selenium-java:${seleniumjavaVersion}"
-
-    // https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager
-    testImplementation group: 'io.github.bonigarcia', name: 'webdrivermanager', version: "${webdrivermanager}"
-
-    testImplementation "org.junit.jupiter:junit-jupiter-api:${junitjupiterVersion}"
-    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitjupiterVersion}"
+    testRuntimeOnly libs.junit.jupiter.engine
 }
 
 java {
@@ -54,6 +46,12 @@ test {
 
 artifacts {
     archives javadocJar, sourcesJar
+}
+
+javadoc {
+    options.showFromProtected()
+    failOnError = false
+    options.locale = "en_US"
 }
 
 publishing {
@@ -103,6 +101,7 @@ publishing {
 signing {
     sign publishing.publications.mavenJava
 }
+
 // I do not want to sign the SNAPSHOT
 tasks.withType(Sign) {
     onlyIf { isReleaseVersion }

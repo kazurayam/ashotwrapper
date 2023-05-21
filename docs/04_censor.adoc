@@ -1,0 +1,17 @@
+== How to ignore `<div>`s that keep on changing its view
+
+Many websites contain `<div>` elements that display some commercial advertisements, that keep on changing dynamically. These dynamic HTML elements disturbs visual comparison of 2 screenshots taken at different timings. These dynamic `<div>`s will highly likely to be different; which result some % of image-diff. However, I am not interested in the image-difference caused by the advertisements. Rather, I want to ignore those dynamic HTML elements in image comparison. How can I do it?
+
+You can optionally paint the square regions of selected HTML elements in the screenshot images in grey color. I would call it : *Censoring* (検閲、塗りつぶし). See an example of *censored* page image:
+
+.Censoring example
+|===
+|original | with censoring
+
+| image:images/no_censor.png[]
+
+|image:images/with_censor.png[]
+|===
+
+Please find the clock area is painted grey. You can do image comparison of 2 screenshots both of which are censored. Possibly, the painted area would not cause significant difference anymore.
+

@@ -60,49 +60,82 @@ public class AShotWrapperTest {
         driver.navigate().to("http://example.com");
 
     }
-
-    @Test
-    void test_takeWebElementImage() throws IOException {
-        BufferedImage image = AShotWrapper.takeElementImage(driver,
-                By.xpath("//body/div"),
-                new AShotWrapper.Options.Builder().build());
-        assertNotNull(image);
-        File screenshotFile = outputDir.resolve("test_takeWebElementImage.png").toFile();
-        ImageIO.write(image, "PNG", screenshotFile);
-        assertTrue(screenshotFile.exists());
-    }
-
-    @Test
-    void test_takeEntirePageImage() throws IOException {
-        BufferedImage image = AShotWrapper.takeEntirePageImage(driver, new AShotWrapper.Options.Builder().build());
-        assertNotNull(image);
-        File screenshotFile = outputDir.resolve("test_takeEntirePageImage.png").toFile();
-        ImageIO.write(image, "PNG", screenshotFile);
-        assertTrue(screenshotFile.exists());
-    }
-
-    @Test
-    void test_saveElementImage() throws IOException {
-        File screenshotFile = outputDir.resolve("test_saveElementImage.png").toFile();
-        AShotWrapper.saveElementImage(driver,
-                By.xpath("//body/div"), screenshotFile);
-        assertTrue(screenshotFile.exists());
-    }
-
-    @Test
-    void test_saveEntirePageImage() throws IOException {
-        File screenshotFile = outputDir.resolve("test_saveEntirePageImage.png").toFile();
-        AShotWrapper.saveEntirePageImage(driver, screenshotFile);
-        assertTrue(screenshotFile.exists());
-    }
-
-
-
     @AfterEach
     void tearDown(){
         if (driver != null) {
             driver.quit();
         }
+    }
+
+    @Test
+    void test_censor() throws IOException {
+        File file = outputDir.resolve("test_censor.png").toFile();
+        AShotWrapper.Options options =
+                new AShotWrapper.Options.Builder()
+                        .addIgnoredElement(
+                                By.xpath("//body/div/p[1]"))
+                        .build();
+        AShotWrapper.saveEntirePageImage(driver, options, file);
+        assertTrue(file.exists());
+    }
+
+    @Test
+    void test_resize() throws IOException {
+        File file = outputDir.resolve("test_resize.png").toFile();
+        BufferedImage source = AShotWrapper.takePageImage(driver);
+        BufferedImage resized = AShotWrapper.resize(source, 400);
+        AShotWrapper.writePNG(resized, file);
+    }
+
+
+    @Test
+    void test_saveElementImage() throws IOException {
+        File file = outputDir.resolve("test_saveElementImage.png").toFile();
+        AShotWrapper.saveElementImage(driver,
+                By.xpath("//body/div"), file);
+        assertTrue(file.exists());
+    }
+
+    @Test
+    void test_saveEntirePageImage() throws IOException {
+        File file = outputDir.resolve("test_saveEntirePageImage.png").toFile();
+        AShotWrapper.saveEntirePageImage(driver, file);
+        assertTrue(file.exists());
+    }
+
+    @Test
+    void test_savePageImage() throws IOException {
+        File file = outputDir.resolve("test_savePageImage.png").toFile();
+        AShotWrapper.saveEntirePageImage(driver, file);
+        assertTrue(file.exists());
+    }
+
+    @Test
+    void test_takeElementImage() throws IOException {
+        BufferedImage image = AShotWrapper.takeElementImage(driver,
+                By.xpath("//body/div"));
+        assertNotNull(image);
+        File file = outputDir.resolve("test_takeElementImage.png").toFile();
+        ImageIO.write(image, "PNG", file);
+        assertTrue(file.exists());
+    }
+
+    @Test
+    void test_takeEntirePageImage() throws IOException {
+        BufferedImage image = AShotWrapper.takeEntirePageImage(driver);
+        assertNotNull(image);
+        File file = outputDir.resolve("test_takeEntirePageImage.png").toFile();
+        ImageIO.write(image, "PNG", file);
+        assertTrue(file.exists());
+    }
+
+    @Test
+    void test_takePageImage() throws IOException {
+        BufferedImage image = AShotWrapper.takePageImage(driver);
+        assertNotNull(image);
+        File file = outputDir.resolve("test_takePageImage.png").toFile();
+        ImageIO.write(image, "PNG", file);
+        assertTrue(file.exists());
     }
 
 }

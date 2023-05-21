@@ -4,6 +4,13 @@ Many websites contain `<div>` elements that display some commercial advertisemen
 
 You can optionally paint the square regions of selected HTML elements in the screenshot images in grey color. I would call it : *Censoring* (検閲、塗りつぶし). See an example of *censored* page image:
 
+- link:https://github.com/kazurayam/ashotwrapper/blob/develop/src/test/java/com/kazurayam/ashotwrapper/samples/AShotWrapperCensorDemo.java[`com.kazurayam.ashotwrapper.samples.AShotWrapperCencorDemo`]
+
+[source]
+----
+include::../src/test/java/com/kazurayam/ashotwrapper/samples/AShotWrapperCensorDemo.java[lines=84..99]
+----
+
 .Censoring example
 |===
 |original | with censoring

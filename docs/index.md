@@ -519,6 +519,27 @@ Many websites contain `<div>` elements that display some commercial advertisemen
 
 You can optionally paint the square regions of selected HTML elements in the screenshot images in grey color. I would call it : **Censoring** (検閲、塗りつぶし). See an example of **censored** page image:
 
+-   [`com.kazurayam.ashotwrapper.samples.AShotWrapperCencorDemo`](https://github.com/kazurayam/ashotwrapper/blob/develop/src/test/java/com/kazurayam/ashotwrapper/samples/AShotWrapperCensorDemo.java)
+
+<!-- -->
+
+        @Test
+        void test_censor_on_insensitive_page() throws IOException {
+            driver.manage().window().setSize(new Dimension(1024, 600));
+            driver.navigate().to("http://devadmin.kazurayam.com/");
+            // no censor
+            File file1 = outputDir.resolve("no_censor.png").toFile();
+            AShotWrapper.saveEntirePageImage(driver, file1);
+            // with censor
+            AShotWrapper.Options options =
+                    new AShotWrapper.Options.Builder()
+                            .addIgnoredElement(
+                                    By.xpath("//span[@id='clock']"))
+                            .build();
+            File file2 = outputDir.resolve("with_censor.png").toFile();
+            AShotWrapper.saveEntirePageImage(driver, options, file2);
+        }
+
 <table>
 <caption>Censoring example</caption>
 <colgroup>

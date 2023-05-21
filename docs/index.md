@@ -1,17 +1,18 @@
--   <a href="#ashotwrapper" id="toc-ashotwrapper">AShotWrapper</a>
-    -   <a href="#what-is-this" id="toc-what-is-this">What is this?</a>
-        -   <a href="#whats" id="toc-whats">What’s ++</a>
-    -   <a href="#how-to-use-the-ashotwrapper" id="toc-how-to-use-the-ashotwrapper">How to use the <code>AShotWrapper</code></a>
-        -   <a href="#javadoc" id="toc-javadoc">Javadoc</a>
-    -   <a href="#sample-codes" id="toc-sample-codes">Sample codes</a>
-        -   <a href="#save-a-screenshot-of-the-entire-page-in-png" id="toc-save-a-screenshot-of-the-entire-page-in-png">Save a screenshot of the entire page in PNG</a>
-        -   <a href="#save-a-screenshot-of-the-current-viewport-in-png" id="toc-save-a-screenshot-of-the-current-viewport-in-png">Save a screenshot of the current viewport in PNG</a>
-        -   <a href="#save-a-screenshot-of-an-element-in-the-page-in-png" id="toc-save-a-screenshot-of-an-element-in-the-page-in-png">Save a screenshot of an element in the page in PNG</a>
-        -   <a href="#save-a-screenshot-of-the-entire-page-in-jpeg" id="toc-save-a-screenshot-of-the-entire-page-in-jpeg">Save a screenshot of the entire page in JPEG</a>
-    -   <a href="#study-how-to-reduce-file-size-of-screenshots-using-jpeg-format" id="toc-study-how-to-reduce-file-size-of-screenshots-using-jpeg-format">Study how to reduce file size of screenshots using JPEG format</a>
-        -   <a href="#web-page-with-lots-of-photos" id="toc-web-page-with-lots-of-photos">Web page with lots of photos</a>
-        -   <a href="#text-only-web-page" id="toc-text-only-web-page">Text-only web page</a>
-        -   <a href="#ordinary-web-page-with-text-and-a-few-images" id="toc-ordinary-web-page-with-text-and-a-few-images">Ordinary web page with text and a few images</a>
+-   [AShotWrapper](#ashotwrapper)
+    -   [What is this?](#what-is-this)
+        -   [What’s ++](#whats)
+    -   [How to use the `AShotWrapper`](#how-to-use-the-ashotwrapper)
+        -   [Javadoc](#javadoc)
+    -   [Sample codes](#sample-codes)
+        -   [Save a screenshot of the entire page in PNG](#save-a-screenshot-of-the-entire-page-in-png)
+        -   [Save a screenshot of the current viewport in PNG](#save-a-screenshot-of-the-current-viewport-in-png)
+        -   [Save a screenshot of an element in the page in PNG](#save-a-screenshot-of-an-element-in-the-page-in-png)
+        -   [Save a screenshot of the entire page in JPEG](#save-a-screenshot-of-the-entire-page-in-jpeg)
+    -   [Study how to reduce file size of screenshots using JPEG format](#study-how-to-reduce-file-size-of-screenshots-using-jpeg-format)
+        -   [Web page with lots of photos](#web-page-with-lots-of-photos)
+        -   [Text-only web page](#text-only-web-page)
+        -   [Ordinary web page with text and a few images](#ordinary-web-page-with-text-and-a-few-images)
+    -   [How to ignore \`&lt;div&gt;\`s that keep on changing its view](#how-to-ignore-divs-that-keep-on-changing-its-view)
 
 # AShotWrapper
 
@@ -511,3 +512,33 @@ Mixture of texts and small number of images. There are a lot of web sites on the
 </table>
 
 PNG has smaller file size than JPEG of the compression quality 1.0. The JPEG of compression quality 0.9f is quite similar to PNG. Yes, JPEG could tuned to be smaller than PNG but is not so much significant.
+
+## How to ignore \`&lt;div&gt;\`s that keep on changing its view
+
+Many websites contain `<div>` elements that display some commercial advertisement, that keep on changing dynamically. These dynamic HTML elements disturbs visual comparison of 2 screenshots taken at different timing / form different URLs. These dynamic \`&lt;div&gt;\`s will highly likely to be different; which result some significant % of image-diff. I want to ignore those dynamic HTML elements in image comparison. How can I do it?
+
+You can optionally paint the square regions of selected HTML elements in the screenshot images in grey color. I would call it : **Censoring** (検閲、塗りつぶし). See an example of **censored** page image:
+
+<table>
+<caption>Censoring example</caption>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">original</th>
+<th style="text-align: left;">with censoring</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><p><img src="images/no_censor.png" alt="no censor" /></p></td>
+<td style="text-align: left;"><p><img src="images/with_censor.png" alt="with censor" /></p></td>
+</tr>
+</tbody>
+</table>
+
+Censoring example
+
+Please find the clock area is painted grey.

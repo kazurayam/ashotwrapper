@@ -434,8 +434,18 @@ public class AShotWrapper {
 
         public static float resolveDPR(WebDriver driver) {
             JavascriptExecutor js = (JavascriptExecutor)driver;
-            Long value = (Long)js.executeScript("return window.devicePixelRatio;");
-            return (float)value;
+            // When window.devicePixelRatio of 2.5, js.executeScript will return a type Double but
+            // When window.devicePixelRatio of 2.0, js.executeScript will return a type Long.
+            // The returned type moves depending on the value.
+            // We need to be careful in type conversion
+            Object dpr = js.executeScript("return window.devicePixelRatio;");
+            if (dpr instanceof Long) {
+                return ((Long) dpr).floatValue();
+            } else if (dpr instanceof Double) {
+                return ((Double) dpr).floatValue();
+            } else {
+                throw new RuntimeException("dpr.getClass()=" + dpr.getClass().getName());
+            }
         }
     }
 }
